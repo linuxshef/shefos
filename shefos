@@ -1,15 +1,15 @@
 #!/bin/bash
-#
-#  Shef OS Install v.3.3.1
-#────────────────────────────────────────────────────────|
-#           .
-# Author    . LinuxShef
-#           .
-# Project   .
-#           .
-# License   . LGPL-3.0 (http://opensource.org/licenses/lgpl-3.0.html)
-#           .
-#──────────────────────────────────────────────────────────────────────|
+#────────────────────────────────
+#  Version  : Shef OS Installer v.3.0.1
+#           :
+#  Author   : LinuxShef
+#           :
+#  Project  : https://github.com/linuxshef/shefos.git
+#           :
+#  License  : LGPL-3.0 (http://opensource.org/licenses/lgpl-3.0.html)
+#           :
+#────────────────────────────────
+
 clear
 echo '
 
