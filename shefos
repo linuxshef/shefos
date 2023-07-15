@@ -1579,7 +1579,7 @@ for package in "${packages[@]}"; do
 done
 pacman -Sc --noconfirm
 pacman -Syy
-packages=(ananicy-cpp ananicy-rules grub-customizer-git zramswap stacer-bin hardinfo sddm-config-editor-git antimicrox xdman8 ttf-ms-fonts ttf-tahoma ttf-kochi-substitute system-monitoring-center $IPC)
+packages=(ananicy-cpp ananicy-rules grub-customizer-git zramswap stacer-bin hardinfo sddm-config-editor-git antimicrox xdman8 ttf-ms-fonts ttf-tahoma system-monitoring-center $IPC) # ttf-kochi-substitute не работает
 for package in "${packages[@]}"; do
   git clone https://aur.archlinux.org/$package.git
   chown manjaro /mnt/home/$username/tools/$package
