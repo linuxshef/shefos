@@ -39,7 +39,6 @@ echo '
                                        ─────────────────────────────────────────────────────────────────────────
 '
 systemctl enable --now systemd-timesyncd >/dev/null 2>&1; RETVAL=$?
-systemctl enable systemd-resolved >/dev/null 2>&1; RETVAL=$?
 systemctl start systemd-resolved
 sed -i s/'#en_US.UTF-8'/'en_US.UTF-8'/g /etc/locale.gen
 sed -i s/'#ru_RU.UTF-8'/'ru_RU.UTF-8'/g /etc/locale.gen
@@ -1195,7 +1194,7 @@ clear
 #                                                      #
 #----------------------------------------------------------------------|
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
-sed -i s/'#ParallelDownloads = 5'/'ParallelDownloads = 5'/g /etc/pacman.conf
+sed -i s/'#ParallelDownloads = 4'/'ParallelDownloads = 5'/g /etc/pacman.conf
 sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf
 sed -i s/'#Color'/'ILoveCandy'/g /etc/pacman.conf
 sed -i s/'CheckSpace'/'#CheckSpace'/g /etc/pacman.conf
@@ -1230,7 +1229,7 @@ sleep 4
 pacman-mirrors --fasttrack
 pacman -Syy
 pacman -Sy arch-install-scripts --noconfirm
-basestrap -i /mnt base base-devel linux63 linux63-acpi_call linux63-headers linux-firmware dosfstools btrfs-progs intel-ucode amd-ucode iucode-tool archlinux-keyring manjaro-keyring cups bluez bluez-utils manjaro-tools-base networkmanager dhcpcd dhclient vim nano pipewire pipewire-alsa pipewire-jack pipewire-media-session manjaro-pipewire zsh zsh-completions mhwd mhwd-db python-gobject ccache --noconfirm
+basestrap -i /mnt base base-devel linux64 linux64-acpi_call linux64-headers linux-firmware dosfstools btrfs-progs intel-ucode amd-ucode iucode-tool archlinux-keyring manjaro-keyring cups bluez bluez-utils manjaro-tools-base networkmanager dhcpcd dhclient vim nano pipewire pipewire-alsa pipewire-jack pipewire-media-session manjaro-pipewire zsh zsh-completions mhwd mhwd-db python-gobject ccache --noconfirm
 fstabgen -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash -c "ln -sf /usr/share/zoneinfo/$region /etc/localtime"
 arch-chroot /mnt /bin/bash -c "hwclock --systohc"
@@ -1245,7 +1244,7 @@ arch-chroot /mnt /bin/bash -c "echo '127.0.0.1 localhost' > /etc/hosts"
 arch-chroot /mnt /bin/bash -c "echo '::1       localhost' >> /etc/hosts"
 arch-chroot /mnt /bin/bash -c "echo '127.0.0.1 Manjaro.localdomain Manjaro' >> /etc/hosts"
 #----------------------------PACMAN--------------------------------------------------------------
-arch-chroot /mnt /bin/bash -c "sed -i s/'#ParallelDownloads = 5'/'ParallelDownloads = 5'/g /etc/pacman.conf"
+arch-chroot /mnt /bin/bash -c "sed -i s/'#ParallelDownloads = 4'/'ParallelDownloads = 5'/g /etc/pacman.conf"
 arch-chroot /mnt /bin/bash -c "sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf"
 arch-chroot /mnt /bin/bash -c "sed -i s/'#Color'/'ILoveCandy'/g /etc/pacman.conf"
 arch-chroot /mnt /bin/bash -c "sed -i s/'CheckSpace'/'#CheckSpace'/g /etc/pacman.conf"
