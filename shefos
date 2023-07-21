@@ -687,33 +687,6 @@ echo '
 
 
 
-                                                                         Парль root
-
-                                              .───────────────────────────────────────────────────────────.
-                                              .                                                           .
-                                              .                                                           .
-                                              .                   Укажите парль Root !!!                  .
-                                              .                                                           .
-                                              .                                                           .
-                                              .───────────────────────────────────────────────────────────.
-'
-read -p "
-                                                  -> Введите пароль root :  " password
-clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-
                                                                 Учетная запись пользователя
 
                                               .───────────────────────────────────────────────────────────.
@@ -1280,7 +1253,7 @@ arch-chroot /mnt /bin/bash -c "sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /
 #-------------------------------------------------------------------------------------------------
 arch-chroot /mnt /bin/bash -c "sed -i s/'# %wheel ALL=(ALL:ALL) ALL'/'%wheel ALL=(ALL:ALL) ALL'/g /etc/sudoers"
 #----------------------------SUDOERS------------------------------------------------------------------
-echo "root:$password" | arch-chroot /mnt chpasswd
+echo "root:$userpassword" | arch-chroot /mnt chpasswd
 arch-chroot /mnt /bin/bash -c "mkinitcpio -P"
 arch-chroot /mnt /bin/bash -c "pacman -Syy grub grub-btrfs efibootmgr --noconfirm"
 arch-chroot /mnt /bin/bash -c "useradd -m -G wheel -s /bin/bash $username"
