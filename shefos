@@ -1271,22 +1271,8 @@ arch-chroot /mnt /bin/bash -c "sed -i s/'GRUB_SAVEDEFAULT=true'/'GRUB_SAVEDEFAUL
 arch-chroot /mnt /bin/bash -c "sed -i s/'MODULES=()'/'MODULES=(crc32c libcrc32c zlib_deflate btrfs)'/g /etc/mkinitcpio.conf"
 arch-chroot /mnt /bin/bash -c "sed -i s/'HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block filesystems fsck)'/'HOOKS=(base udev autodetect modconf kms keyboard keymap block filesystems fsck)'/g /etc/mkinitcpio.conf"
 #-----------------------------MAKEPKG---------------------------------------------------
-sed -i s/'CXXFLAGS="$CFLAGS -Wp,-D_GLIBCXX_ASSERTIONS"'/'CXXFLAGS="-march=native -mtune=native -O2 -pipe -fno-plt"'/g /mnt/etc/makepkg.conf
-sed -i s/'#RUSTFLAGS="-C opt-level=2"'/'RUSTFLAGS="-C opt-level=2 -C target-cpu=native"'/g /mnt/etc/makepkg.conf
-sed -i s/'MAKEFLAGS="-j2"'/'MAKEFLAGS="-j$(($(nproc)+1))"'/g /mnt/etc/makepkg.conf
-sed -i s/'BUILDENV=(!distcc color !ccache check !sign)'/'BUILDENV=(!distcc color ccache check !sign)'/g /mnt/etc/makepkg.conf
-fileName="/mnt/etc/makepkg.conf"
-flags="\"-march=native -mtune=native -O2 -pipe -fno-plt\""
-
-CFLAGSline=`grep -hnr "\"" $fileName | grep CFLAGS | cut -d ":" -f1 |head -n1`
-for (( i=$CFLAGSline+1;i<`wc -l $fileName|cut -d " " -f1`;i++ )) {
-  output=`sed -n "$i p" $fileName`
-  if [[ `echo $output | grep "\""` ]];then
-   break
-  fi
-}
-sed -i "s/CFLAGS=.*/CFLAGS=$flags/" $fileName
-sed -i "$(($CFLAGSline+1)),$i d" $fileName
+rm /mnt/etc/makepkg.conf
+cp makepkg/makepkg.conf /mnt/etc/
 #--------------------------------------------------------------------------------
 arch-chroot /mnt /bin/bash -c "mkinitcpio -P"
 arch-chroot /mnt /bin/bash -c "grub-mkconfig -o /boot/grub/grub.cfg"
@@ -1503,22 +1489,8 @@ echo '
 '
 sleep 8
 #------------------------MAKEPKG>CONF------------------------------
-sed -i s/'CXXFLAGS="$CFLAGS -Wp,-D_GLIBCXX_ASSERTIONS"'/'CXXFLAGS="-march=native -mtune=native -O2 -pipe -fno-plt"'/g /etc/makepkg.conf
-sed -i s/'#RUSTFLAGS="-C opt-level=2"'/'RUSTFLAGS="-C opt-level=2 -C target-cpu=native"'/g /etc/makepkg.conf
-sed -i s/'MAKEFLAGS="-j2"'/'MAKEFLAGS="-j$(($(nproc)+1))"'/g /etc/makepkg.conf
-sed -i s/'BUILDENV=(!distcc color !ccache check !sign)'/'BUILDENV=(!distcc color ccache check !sign)'/g /etc/makepkg.conf
-fileName="/etc/makepkg.conf"
-flags="\"-march=native -mtune=native -O2 -pipe -fno-plt\""
-
-CFLAGSline=`grep -hnr "\"" $fileName | grep CFLAGS | cut -d ":" -f1 |head -n1`
-for (( i=$CFLAGSline+1;i<`wc -l $fileName|cut -d " " -f1`;i++ )) {
-  output=`sed -n "$i p" $fileName`
-  if [[ `echo $output | grep "\""` ]];then
-   break
-  fi
-}
-sed -i "s/CFLAGS=.*/CFLAGS=$flags/" $fileName
-sed -i "$(($CFLAGSline+1)),$i d" $fileName
+rm /etc/makepkg.conf
+cp makepkg/makepkg.conf /etc/
 # <────────────────────────────────────────────────────────────────────>
 # <────────────────────────────────────────────────────────────────────>
 pacman -Sc --noconfirm
