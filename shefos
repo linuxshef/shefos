@@ -1140,7 +1140,7 @@ sleep 4
 pacman-mirrors --fasttrack
 pacman -Syy
 pacman -Sy arch-install-scripts --noconfirm
-basestrap -i /mnt base base-devel linux64 linux64-acpi_call linux64-headers linux-firmware dosfstools btrfs-progs intel-ucode amd-ucode iucode-tool archlinux-keyring manjaro-keyring cups bluez bluez-utils manjaro-tools-base networkmanager dhcpcd dhclient vim nano pipewire pipewire-alsa pipewire-jack pipewire-media-session manjaro-pipewire zsh zsh-completions mhwd mhwd-db python-gobject ccache --noconfirm
+basestrap -i /mnt base base-devel linux64 linux64-acpi_call linux64-headers linux-firmware dosfstools btrfs-progs intel-ucode amd-ucode iucode-tool archlinux-keyring manjaro-keyring cups bluez bluez-utils manjaro-tools-base networkmanager dhcpcd dhclient vim nano pipewire pipewire-alsa pipewire-jack wireplumber libwireplumber manjaro-pipewire zsh zsh-completions mhwd mhwd-db python-gobject ccache clang ninja meson make cmake --noconfirm
 fstabgen -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash -c "ln -sf /usr/share/zoneinfo/$region /etc/localtime"
 arch-chroot /mnt /bin/bash -c "hwclock --systohc"
@@ -1261,7 +1261,7 @@ cp makepkg/makepkg.conf /etc/
 # <────────────────────────────────────────────────────────────────────>
 pacman -Sc --noconfirm
 pacman -Syy
-pacman -S base-devel python-gobject extra-cmake-modules sdl2 gobject-introspection libdazzle libappindicator-gtk3 python-cairo python-matplotlib python-peewee python-rx python-pyxdg python-xlib libunistring lib32-libunistring ccache meson autoconf-archive docbook-xml docbook-xsl glib2-docs itstool mallard-ducktype python-anytree python-lxml python-pygments yelp-tools yelp-xsl gnome-common gtk-doc intltool python python-pip --noconfirm
+pacman -S base-devel python-gobject extra-cmake-modules sdl2 gobject-introspection libdazzle libappindicator-gtk3 python-cairo python-matplotlib python-peewee python-rx python-pyxdg python-xlib libunistring lib32-libunistring ccache meson autoconf-archive docbook-xml docbook-xsl glib2-docs itstool mallard-ducktype python-anytree python-lxml python-pygments yelp-tools yelp-xsl gnome-common gtk-doc intltool python python-pip make cmake --noconfirm
 pacman -Sc --noconfirm
 pacman -Syy
 source config/path/aur_patch
