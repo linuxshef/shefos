@@ -960,9 +960,9 @@ read main_menu
        ;;
       "3" ) IPC=intel-power-control-git
        ;;
-      "4" ) a='source config/Choice/A'
+      "4" ) a='source /home/manjaro/shefos/config/Choice/A'
        ;;
-      "5" ) b='source config/Choice/B'
+      "5" ) b='source /home/manjaro/shefos/config/Choice/B'
        ;;
       "6" )
 clear3
@@ -1015,17 +1015,17 @@ echo -n "
                                                         -> Введите значение : "
 read main_menu
       case "$main_menu" in
-      "7" ) c='source config/Choice/C'
+      "7" ) c='source /home/manjaro/shefos/config/Choice/C'
        ;;
-      "8" ) d='source config/Choice/D'
+      "8" ) d='source /home/manjaro/shefos/config/Choice/D'
        ;;
-      "9" ) e='source config/Choice/E'
+      "9" ) e='source /home/manjaro/shefos/config/Choice/E'
        ;;
-     "10" ) f='source config/Choice/F'
+     "10" ) f='source /home/manjaro/shefos/config/Choice/F'
        ;;
-     "11" ) g='source config/Choice/G'
+     "11" ) g='source /home/manjaro/shefos/config/Choice/G'
       ;;
-     "12" ) q='source config/Choice/Q'
+     "12" ) q='source /home/manjaro/shefos/config/Choice/Q'
       ;;
      "13" )
 clear
@@ -1078,19 +1078,19 @@ echo -n "
                                                         -> Введите значение : "
 read main_menu
       case "$main_menu" in
-      "14" ) r='source config/Choice/R'
+      "14" ) r='source /home/manjaro/shefos/config/Choice/R'
        ;;
-      "15" ) s='source config/Choice/S'
+      "15" ) s='source /home/manjaro/shefos/config/Choice/S'
        ;;
-      "16" ) t='source config/Choice/T'
+      "16" ) t='source /home/manjaro/shefos/config/Choice/T'
        ;;
-      "17" ) l='source config/Choice/L'
+      "17" ) l='source /home/manjaro/shefos/config/Choice/L'
        ;;
-      "18" ) o='source config/Choice/O'
+      "18" ) o='source /home/manjaro/shefos/config/Choice/O'
        ;;
-      "19" ) m='source config/Choice/M'
+      "19" ) m='source /home/manjaro/shefos/config/Choice/M'
        ;;
-      "20" ) n='source config/Choice/N'
+      "20" ) n='source /home/manjaro/shefos/config/Choice/N'
       esac
 
       esac
