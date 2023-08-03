@@ -1265,7 +1265,7 @@ pacman -Sc --noconfirm
 pacman -Syy
 source config/path/aur_patch
 # <────────────────────────────────────────────────────────────────────>
-source config/AUR/AUR
+source config/AUR/aur
 cd /mnt/home/$username/tools
 git clone https://github.com/VHSgunzo/grub-snap.git
 arch-chroot /mnt /bin/bash -c "cd home/$username/tools/grub-snap ; make install"
