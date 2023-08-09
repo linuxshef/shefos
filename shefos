@@ -11,33 +11,7 @@
 #────────────────────────────────
 
 clear
-echo '
-
-
-
-
-
-
-
-
-
-                                                                ShefOS Install v.3.3.1
-
-                                      ─────────────────────────────────────────────────────────────────────────
-
-
-
-                                            ██╗      ██████╗  █████╗ ██████╗ ██╗███╗   ██╗ ██████╗
-                                            ██║     ██╔═══██╗██╔══██╗██╔══██╗██║████╗  ██║██╔════╝
-                                            ██║     ██║   ██║███████║██║  ██║██║██╔██╗ ██║██║  ███╗
-                                            ██║     ██║   ██║██╔══██║██║  ██║██║██║╚██╗██║██║   ██║
-                                            ███████╗╚██████╔╝██║  ██║██████╔╝██║██║ ╚████║╚██████╔╝██╗██╗██╗
-                                            ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═════╝ ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝╚═╝
-
-
-
-                                       ─────────────────────────────────────────────────────────────────────────
-'
+source config/logo/logo1
 systemctl enable --now systemd-timesyncd >/dev/null 2>&1; RETVAL=$?
 systemctl start systemd-resolved
 sed -i s/'#en_US.UTF-8'/'en_US.UTF-8'/g /etc/locale.gen
@@ -54,75 +28,10 @@ locale-gen >/dev/null 2>&1; RETVAL=$?
 systemctl restart dhcpcd
 dhcpcd >/dev/null
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-                             {=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=}
-
-
-
-
-
-
-                                   ▄████████    ▄█    █▄       ▄████████    ▄████████       ▄██████▄     ▄████████
-                                  ███    ███   ███    ███     ███    ███   ███    ███      ███    ███   ███    ███
-                                  ███    █▀    ███    ███     ███    █▀    ███    █▀       ███    ███   ███    █▀
-                                  ███         ▄███▄▄▄▄███▄▄  ▄███▄▄▄      ▄███▄▄▄          ███    ███   ███
-                                ▀███████████ ▀▀███▀▀▀▀███▀  ▀▀███▀▀▀     ▀▀███▀▀▀          ███    ███ ▀███████████
-                                         ███   ███    ███     ███    █▄    ███             ███    ███          ███
-                                   ▄█    ███   ███    ███     ███    ███   ███             ███    ███    ▄█    ███
-                                 ▄████████▀    ███    █▀      ██████████   ███              ▀██████▀   ▄████████▀
-
-
-
-
-                                                                  {  Manjaro based  }
-
-                              {=-=--=-=-=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=}
-
-'
+source config/logo/logo2
 sleep 6
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                           ▄▀             Добро пожаловать в программу установки
-                                       █▀▀▀█▀█
-                                        ▀▄░▄▀
-                                          █                             Shef OS  !
-                                        ▄▄█▄▄
-                                        <────────────────────────────────────────────────────────────────────>
-
-
-
-                                              Внимание !  скрипт НЕ создает разделы на диске , разделы вы
-
-
-                                          создаёте сами , поэтому если вы еще не создали разделы - создайте их
-
-
-
-                                    <───────────────────────────────────────────────────────────────────────────>
-'
+source config/logo/logo3
     echo -e "
       \t                                                 -> Пропустить введите     1    "
 
@@ -138,42 +47,7 @@ echo '
       case "$main_menu" in
          "1" ) clear
            ;;
-         "2" ) clear ; echo '
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                       Добро пожаловать в меню раметки диска !
-
-                                          . ────────────────────────────────────────────────────────────.
-                                          .                                                             .
-                                          .                                                             .
-                                          .         Сейчас будет выведена информация о дисках           .
-                                          .                                                             .
-                                          .          Выберите тот диск который надо разметить           .
-                                          .                                                             .
-                                          .                                                             .
-                                          .    ** Имя диска например ( sda , sdb, sdc , nvme0n1 ) **    .
-                                          .                                                             .
-                                          .                                                             .
-                                          . ────────────────────────────────────────────────────────────.
-
-
-
-'
+         "2" ) clear ; source config/logo/logo4
 
 lsblk -d -p -n -l -o NAME,SIZE -e 7,11
 
@@ -183,99 +57,18 @@ read -t 99999 -n 1 -s -r -p "
 
                                                       -> Нажмите Enter для продолжения <- "
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                              Выбор диска для разметки
-
-                                           .─────────────────────────────────────────────────────────────.
-                                           .                                                             .
-                                           .                                                             .
-                                           .              Введите имя диска для разметки                 .
-                                           .                                                             .
-                                           .                                                             .
-                                            ──────────────────────────────────────────────────────────────
-'
+source config/logo/logo5
 read -p "
                                                   -> Введите значение : " namedisk
 cfdisk --zero /dev/$namedisk
       esac
 clear
-
-echo '
-
-
-
-
-
-
-
-
-                                                               Настройка часового пояса
-
-                                           .──────────────────────────────────────────────────────────────.
-                                           .                                                              .
-                                           .                                                              .
-                                           .  Настройка региона выставляет часовой пояс и время согласно  .
-                                           .                                                              .
-                                           .                      указаному региону                       .
-                                           .                                                              .
-                                           .  Название региона можно посмотреть в списке регионов или     .
-                                           .                                                              .
-                                           .  ввести вручную , если уже знаете , именно в таком формате   .
-                                           .                                                              .
-                                           .                  Пример -->   /Europe/Moscow                 .
-                                           .                                                              .
-                                           .                                                              .
-                                           .──────────────────────────────────────────────────────────────.
-
-'
+source config/logo/logo6
 read -p "
                                                     -> Введите значение : " region
 
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-                                                                    Выбор диска для GRUB
-
-                                              . ────────────────────────────────────────────────────────────.
-                                              .                                                             .
-                                              .                                                             .
-                                              .  ** Это важно для дальнейщей установки загрузчика GRUB  **  .
-                                              .                                                             .
-                                              .                                                             .
-                                              .         Сейчас будет выведена информация о дисках           .
-                                              .                                                             .
-                                              .   Выберите тот диск на который будет установлена система    .
-                                              .                                                             .
-                                              .            Например ( sda , sdb, sdc , nvme0n1 )            .
-                                              .                                                             .
-                                              .                                                             .
-                                              . ────────────────────────────────────────────────────────────.
-'
+source config/logo/logo7
 sleep 2
 read -t 99999 -n 1 -s -r -p "
                                                           -> Нажмите Enter для продолжения <- "
@@ -287,59 +80,11 @@ read -t 99999 -n 1 -s -r -p "
                                                           -> Нажмите Enter для продолжения <- "
 
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-                                                                    Выбор диска для GRUB
-
-                                               .─────────────────────────────────────────────────────────────.
-                                               .                                                             .
-                                               .                                                             .
-                                               .             Введите имя диска для разметки                  .
-                                               .                                                             .
-                                               .   ** Это важно для дальнейщей установки загрузчика GRUB **  .
-                                               .                                                             .
-                                               .         Например ( sda , sdb, sdc , nvme0n1p )              .
-                                               .                                                             .
-                                               .                                                             .
-                                               ──────────────────────────────────────────────────────────────.
-'
+source config/logo/logo8
 read -p "
                                                        -> Введите значение : " disk
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-                                                                  Ваш диск SSD или HDD
-
-                                              .─────────────────────────────────────────────────────────────.
-                                              .                                                             .
-                                              .                                                             .
-                                              .           Выберите свой вариант какой у вас диск            .
-                                              .                                                             .
-                                              .                                                             .
-                                               ──────────────────────────────────────────────────────────────
-'
+source config/logo/logo9
   echo -e "
 
       \t                                                -> SSD - Nvme - m2 - usb_flash  (   1   )  "
@@ -351,7 +96,6 @@ echo '
     echo -n "
 
                                                            -> Введите значение : "
-
       read main_menu
       case "$main_menu" in
          "1" ) clear ;
@@ -362,36 +106,7 @@ echo '
       esac
 
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-                                                                         Выбор разделов
-
-                                      .────────────────────────────────────────────────────────────────────────────────.
-                                      .                                                                                .
-                                      .                             Введите разделы диска                              .
-                                      .                                                                                .
-                                      .             (Root- Корневой)  (Boot- Загрузочный) (Swap- Подкачка)             .
-                                      .                                                                                .
-                                      .                                                                                .
-                                      .                  Например ( sda2, sdb2, sdc2 , nvme0n1p2 )                     .
-                                      .                                                                                .
-                                      .                                                                                .
-                                      .   ** Внимание ! Если вы не создали swap или home то оставьте поле пустым **    .
-                                      .                                                                                .
-                                      .!!! Для обычного Bios, и установки в один раздел оставьте поле boot пустым !!!! .
-                                      .                                                                                .
-                                      .────────────────────────────────────────────────────────────────────────────────.
-
-'
+source config/logo/logo10
 read -p "
                                                                   -> Boot: " boot
 read -p "
@@ -400,35 +115,8 @@ read -p "
                                                                   -> Swap: " swap
 read -p "
                                                                   -> Home: " home
-
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-                                                             Выбор файловой системы Boot раздела
-
-                                                 .─────────────────────────────────────────────────────────────.
-                                                 .                                                             .
-                                                 .                                                             .
-                                                 .      Выберите файловую систему загрузочного  boot раздела   .
-                                                 .                                                             .
-                                                 .  Согласно вашей версии Bios (обычный стрый BIOS или UEFI)   .
-                                                 .                                                             .
-                                                 .   Для UEFI формат FAT32 . Для обычнго BIOS Ext4 или Ext2    .
-                                                 .                                                             .
-                                                 .                                                             .
-                                                 .─────────────────────────────────────────────────────────────.
-'
+source config/logo/logo11
 echo -e "\t
 
                                                       -> Для UEFI введите     1    "
@@ -467,27 +155,8 @@ mkswap /dev/$swap
 swapon /dev/$swap
 
 clear
+source config/logo/logo12
 
-echo '
-
-
-
-
-
-
-
-
-
-                                                                   Монтирование разделов
-
-                                                   .───────────────────────────────────────────────────────.
-                                                   .                                                       .
-                                                   .                                                       .
-                                                   .       Выберите один из вариантов монтирования         .
-                                                   .                                                       .
-                                                   .                                                       .
-                                                   .───────────────────────────────────────────────────────.
-'
 echo -e "\t
 
 
@@ -509,46 +178,15 @@ echo -n "
 
 read main_menu
       case "$main_menu" in
-        "1") clear ;
-source config/btrfs/btrfs_no_home
+        "1") clear ; source config/btrfs/btrfs_no_home
         ;;
-        "2" ) clear ;
-source config/btrfs/btrfs_home
-     ;;
-     "3" ) clear ;
-source config/btrfs/btrfs_format_home
-   esac
+        "2") clear ; source config/btrfs/btrfs_home
+        ;;
+        "3") clear ; source config/btrfs/btrfs_format_home
+     esac
 
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-                                                                   Монтирование boot раздела
-
-                                                  .──────────────────────────────────────────────────────────.
-                                                  .                                                          .
-                                                  .                                                          .
-                                                  .          Монтирование загрузочного раздела !             .
-                                                  .                                                          .
-                                                  .   Выберите один из варинтов монтирования boot раздела    .
-                                                  .                                                          .
-                                                  .       Для обычного биоса (НЕ UEFI) введите Bios          .
-                                                  .                                                          .
-                                                  .             Для UEFI биоса , введите Uefi                .
-                                                  .                                                          .
-                                                  .                                                          .
-                                                  .──────────────────────────────────────────────────────────.
-'
+source config/logo/logo13
 echo -e "\t
                                                          -> Для UEFI или EFI введите  (  1  )  "
 echo -e "\t
@@ -586,96 +224,16 @@ read main_menu
       esac
 
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                                Учетная запись пользователя
-
-                                              .───────────────────────────────────────────────────────────.
-                                              .                                                           .
-                                              .                                                           .
-                                              .           Введите имя вашей учетной записи !!!            .
-                                              .                                                           .
-                                              .                                                           .
-                                              .    Имя учетной записи вводится только маленькими буквами  .
-                                              .                                                           .
-                                              .───────────────────────────────────────────────────────────.
-'
+source config/logo/logo14
 read -p "
                                                    -> Введите имя учетной записи :  " username
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                             Парль учетной записи пользователя
-
-                                               .───────────────────────────────────────────────────────────.
-                                               .                                                           .
-                                               .                                                           .
-                                               .           Укажите парль вашей учетной записи !!!          .
-                                               .                                                           .
-                                               .                                                           .
-                                               .───────────────────────────────────────────────────────────.
-'
+source config/logo/logo15
 read -p "
                                                    -> Введите пароль пользователя :  " userpassword
 clear
+source config/logo/logo16
 
-echo '
-
-
-
-
-
-
-
-
-
-
-                         ____________________¶¶¶¶¶¶¶
-                         ___________________¶¶
-                         __________________¶¶
-                         _________________¶¶
-                         ________________¶¶
-                         _______________¶¶             Добро пожаловать в меню установки графических драйверов
-                         ____$$$$$$$$$$$$$$$$$$
-                         _____$_______________$       ──────────────────────────────────────────────────────────>
-                         ______$________ZZZZ$
-                         _______$_____ZZZZZ$          Здесь вы можете выбрать драйвера для INTEL , AMD , NVIDIA
-                         ________$__ZZZZZZ$
-                         _________$ZZZZZZ$
-                         __________$ZZZZ$             А также установить проприетарный или свободный (nouveau) драйвер NVIDIA
-                         ___________$ZZ$
-                         ____________$$               ──────────────────────────────────────────────────────────────────────────>
-                         ___________ $$$
-                         __________$$$$$$
-                         ________$$$$$$$$$$           Или драйвера для гибридной графики INTEL + NVIDIA , AMD + NVIDIA и т.д
-                         _____$$$$$$$$$$$$$$
-
-                           ───────────────────────────────────────────────────────────────────────────────────────────────────────────>
-'
 echo -e "\t
                                                            -> Для графики Intel введите ( 1 ) "
 echo -e "\t
@@ -700,49 +258,13 @@ echo -n "
                                                             -> Введите значение : "
 read main_menu
       case "$main_menu" in
-         "1" ) graphc_drivers='basestrap -i /mnt xf86-video-intel mesa mesa-demos lib32-mesa vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader network-manager-applet libva-intel-driver lib32-libva-intel-driver tbb whois acpica enblend-enfuse ibus-libpinyin igsc intel-compute-runtime intel-gmmlib intel-gpu-tools intel-graphics-compiler intel-media-driver intel-media-sdk intel-metee intel-metee-doc intel-mkl intel-mkl-static intel-opencl-clang libchewing libmfx libva-utils onednn openimagedenoise openipmi openvkl presage python-intelhex rkcommon sdcc tipp10 zh-autoconvert qt6-shadertools spirv-tools vulkan-extra-layers vulkan-extra-tools vulkan-headers vulkan-html-docs vulkan-mesa-layers vulkan-validation-layers python-glfw vkd3d lib32-vkd3d lib32-vulkan-mesa-layers lib32-vulkan-validation-layers spirv-tools freeglut ftgl gl2ps glslang gtkglext opengl-man-pages python-opengl blur-effect gambas3-gb-opengl gambas3-gb-opengl-glsl gambas3-gb-opengl-glu gambas3-gb-opengl-sge gambas3-gb-qt5-opengl glava glbinding glm guichan libvdpau-va-gl mupdf-gl opencsg python-glfw soil virtualgl lib32-freeglut lib32-glu lib32-libepoxy --noconfirm'
+         "1" ) source config/drivers/intel
         ;;
-         "2" ) graphc_drivers='basestrap -i /mnt mesa mesa-demos lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader amf-headers libteam distorm hip-runtime-amd hsa-amd-aqlprofile-bin miopen-hip nvtop python-distorm python-pyamdgpuinfo xf86-video-amdgpu network-manager-applet mesa-utils mesa-vdpau vulkan-mesa-layers lib32-libva-mesa-driver lib32-mesa-demos lib32-mesa-utils lib32-mesa-vdpau lib32-vulkan-mesa-layers vulkan-tools vkd3d --noconfirm'
+         "2" ) source config/drivers/amd
         ;;
          "3" )
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-                                                    Добро пожаловать в меню установки драйвера NVIDIA
-
-                                                 .───────────────────────────────────────────────────────.
-                                                 .                                                       .
-                                                 .       Здесь два варинта установки драйверов           .
-                                                 .                                                       .
-                                                 .   Open source драйвер  и проприетарный драйвер        .
-                                                 .                                                       .
-                                                 .   Опенсоурс драйвер лучше для видеокарт старых ,      .
-                                                 .                                                       .
-                                                 .  до архитектуры Kepler , а для новых видеокарт лучше  .
-                                                 .                                                       .
-                                                 .    проприетарный драйвер . Выберите свой варинт       .
-                                                 .                                                       .
-                                   <───────────────────────────────────────────────────────────────────────────────────>
-
-                                       Установка драйвера не гарантирует что все с первого раза запуститься хорошо.
-
-                                            Nvidia не предоставляла свой код для написания нормальных драйверов ,
-
-                                        поэтому гарантировать что драйвер заведется после установки невозможно !!!
-
-                                    <────────────────────────────────────────────────────────────────────────────────>
-'
+source config/logo/logo17
 echo -e "\t
 
 
@@ -756,48 +278,14 @@ echo -n "
                                                           -> Введите значение : "
 read main_menu
       case "$main_menu" in
-       "1" )
-       graphc_drivers='basestrap -i /mnt vulkan-icd-loader lib32-vulkan-icd-loader network-manager-applet --noconfirm'
-       nvidia_driver="mhwd -a pci nonfree 0300"
+       "1" ) source config/drivers/nvidia/nonfree
        ;;
-       "2" ) graphc_drivers='basestrap -i /mnt vulkan-icd-loader lib32-vulkan-icd-loader xf86-video-nouveau nvidia-utils lib32-nvidia-utils vulkan-icd-loader lib32-vulkan-icd-loader lib32-opencl-nvidia opencl-nvidia network-manager-applet --noconfirm'
+       "2" ) source config/drivers/nvidia/free
      esac
         ;;
         "4" )
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-                                                Добро пожаловать в меню ручной установки драйверов NVIDIA
-
-                                           <─────────────────────────────────────────────────────────────────>
-
-                                           Здесь вам будет показан список доступных для установки драйверов Nvidia
-
-                                              Далее вам надо будет ввести назание этого драйвера для установки
-
-                                               Например драйвер  video-nvidia , и прописать в поле для ввода
-
-                                    <───────────────────────────────────────────────────────────────────────────────────>
-
-                                         Установка драйвера не гарантирует что все с первого раза запуститься хорошо.
-
-                                              Nvidia не предоставляла свой код для написания нормальных драйверов ,
-
-                                          поэтому гарантировать что драйвер заведется после установки невозможно !!!
-
-                                      <────────────────────────────────────────────────────────────────────────────────>
-'
+source config/logo/logo18
 echo -e "\t
 
                                                              ->   Продолжить    1     "
@@ -818,31 +306,7 @@ read main_menu
         ;;
         "5" )
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-                                            Добро пожаловать в меню установки драйверов для гибридной графики
-
-                                  .─────────────────────────────────────────────────────────────────────────────────────.
-                                  .                                                                                     .
-                                  . Установка драйвера Nvidia не гарантирует ,что все с первого раза запуститься хорошо .
-                                  .                                                                                     .
-                                  .      Nvidia не предоставляла свой код для написания нормальных драйверов ,              .
-                                  .                                                                                     .
-                                  .    поэтому гарантировать что драйвер заведется после установки невозможно !!!       .
-                                  .                                                                                     .
-                                   ──────────────────────────────────────────────────────────────────────────────────────
-'
+source config/logo/logo19
 echo -e "\t
 
                                                        ->  INTEL + AMD      1     "
@@ -863,74 +327,21 @@ echo -n "
                                                         -> Введите значение : "
 read main_menu
       case "$main_menu" in
-       "1" )
-       graphc_drivers='basestrap -i /mnt xf86-video-intel mesa mesa-demos lib32-mesa vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader network-manager-applet libva-intel-driver lib32-libva-intel-driver libva-intel-driver lib32-libva-intel-driver tbb whois acpica enblend-enfuse ibus-libpinyin igsc intel-compute-runtime intel-gmmlib intel-gpu-tools intel-graphics-compiler intel-media-driver intel-media-sdk intel-metee intel-metee-doc intel-mkl intel-mkl-static intel-opencl-clang libchewing libmfx libva-utils onednn openimagedenoise openipmi openvkl presage python-intelhex rkcommon sdcc tipp10 zh-autoconvert lib32-libva-intel-driver lib32-vulkan-intel libva-intel-driver qt6-shadertools spirv-tools vulkan-extra-layers vulkan-extra-tools vulkan-headers vulkan-html-docs vulkan-mesa-layers vulkan-swrast vulkan-validation-layers python-glfw vkd3d lib32-vkd3d lib32-vulkan-mesa-layers lib32-vulkan-validation-layers spirv-tools freeglut ftgl gl2ps glslang gtkglext opengl-man-pages python-opengl blur-effect gambas3-gb-opengl gambas3-gb-opengl-glsl gambas3-gb-opengl-glu gambas3-gb-opengl-sge gambas3-gb-qt5-opengl glava glbinding glm guichan libvdpau-va-gl mupdf-gl opencsg python-glfw soil virtualgl lib32-freeglut lib32-glu lib32-libepoxy lib32-mesa mesa-demos vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader libva-intel-driver lib32-libva-intel-driver network-manager-applet amdvlk lib32-amdvlk optimus-manager optimus-manager-plasma --noconfirm'
-       optimus="systemctl enable optimus-manager"
+       "1" ) source config/drivers/hybrid/intel_amd
        ;;
-       "2" )
-       graphc_drivers='basestrap -i /mnt xf86-video-intel vulkan-icd-loader lib32-vulkan-icd-loader vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader network-manager-applet libva-intel-driver lib32-libva-intel-driver libva-intel-driver lib32-libva-intel-driver tbb whois acpica enblend-enfuse ibus-libpinyin igsc intel-compute-runtime intel-gmmlib intel-gpu-tools intel-graphics-compiler intel-media-driver intel-media-sdk intel-metee intel-metee-doc intel-mkl intel-mkl-static intel-opencl-clang libchewing libmfx libva-utils onednn openimagedenoise openipmi openvkl presage python-intelhex rkcommon sdcc tipp10 zh-autoconvert lib32-libva-intel-driver lib32-vulkan-intel libva-intel-driver qt6-shadertools spirv-tools vulkan-extra-layers vulkan-extra-tools vulkan-headers vulkan-html-docs vulkan-swrast vulkan-validation-layers python-glfw vkd3d lib32-vkd3d  lib32-vulkan-validation-layers spirv-tools freeglut ftgl gl2ps glslang gtkglext opengl-man-pages python-opengl blur-effect gambas3-gb-opengl gambas3-gb-opengl-glsl gambas3-gb-opengl-glu gambas3-gb-opengl-sge gambas3-gb-qt5-opengl glava glbinding glm guichan libvdpau-va-gl mupdf-gl opencsg python-glfw soil virtualgl lib32-freeglut lib32-glu lib32-libepoxy vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader libva-intel-driver lib32-libva-intel-driver network-manager-applet optimus-manager optimus-manager-plasma --noconfirm'
-       nvidia_driver="mhwd -a pci nonfree 0300"
-       optimus="systemctl enable optimus-manager"
+       "2" ) source config/drivers/hybrid/intel_nvidia_nonfree
        ;;
-       "3" )
-       graphc_drivers='basestrap -i /mnt xf86-video-intel vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader xf86-video-nouveau nvidia-utils lib32-nvidia-utils vulkan-icd-loader lib32-vulkan-icd-loader lib32-opencl-nvidia opencl-nvidia vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader network-manager-applet libva-intel-driver lib32-libva-intel-driver libva-intel-driver lib32-libva-intel-driver tbb whois acpica enblend-enfuse ibus-libpinyin igsc intel-compute-runtime intel-gmmlib intel-gpu-tools intel-graphics-compiler intel-media-driver intel-media-sdk intel-metee intel-metee-doc intel-mkl intel-mkl-static intel-opencl-clang libchewing libmfx libva-utils onednn openimagedenoise openipmi openvkl presage python-intelhex rkcommon sdcc tipp10 zh-autoconvert lib32-libva-intel-driver lib32-vulkan-intel libva-intel-driver qt6-shadertools spirv-tools vulkan-extra-layers vulkan-extra-tools vulkan-headers vulkan-html-docs vulkan-swrast vulkan-validation-layers python-glfw vkd3d lib32-vkd3d lib32-vulkan-validation-layers spirv-tools freeglut ftgl gl2ps glslang gtkglext opengl-man-pages python-opengl blur-effect gambas3-gb-opengl gambas3-gb-opengl-glsl gambas3-gb-opengl-glu gambas3-gb-opengl-sge gambas3-gb-qt5-opengl glava glbinding glm guichan libvdpau-va-gl mupdf-gl opencsg python-glfw soil virtualgl lib32-freeglut lib32-glu lib32-libepoxy vulkan-intel lib32-vulkan-intel vulkan-icd-loader lib32-vulkan-icd-loader libva-intel-driver lib32-libva-intel-driver network-manager-applet optimus-manager optimus-manager-plasma --noconfirm'
+       "3" ) source config/drivers/hybrid/intel_nvidia_free
        ;;
-       "4" )
-       graphc_drivers='basestrap -i /mnt xf86-video-ati xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader network-manager-applet amdvlk lib32-amdvlk optimus-manager optimus-manager-plasma --noconfirm'
-       nvidia_driver="mhwd -a pci nonfree 0300"
-       optimus="systemctl enable optimus-manager"
+       "4" ) source config/drivers/hybrid/amd_nvidia_nonfree
        ;;
-       "5" )
-       graphc_drivers='basestrap -i /mnt xf86-video-ati xf86-video-amdgpu vulkan-radeon lib32-vulkan-radeon vulkan-icd-loader lib32-vulkan-icd-loader vulkan-icd-loader lib32-vulkan-icd-loader xf86-video-nouveau nvidia-utils lib32-nvidia-utils vulkan-icd-loader lib32-vulkan-icd-loader lib32-opencl-nvidia opencl-nvidia network-manager-applet amdvlk lib32-amdvlk optimus-manager optimus-manager-plasma --noconfirm'
-       optimus="systemctl enable optimus-manager"
+       "5" ) source config/drivers/hybrid/amd_nvidia_free
       esac
 
       esac
 clear
 
-echo '
-
-
-
-
-
-
-
-                                                              Дополнительные настройки
-
-                                                .───────────────────────────────────────────────────────.
-                                                .                                                       .
-                                                .         Сюда входит установка программ :              .
-                                                .                                                       .
-                                                .                                                       .
-                                                .  gwe -> программа для управления частоами и вольтажом .
-                                                .                                                       .
-                                                .    видеокарт Nvidia (для разгона)                     .
-                                                .                                                       .
-                                                .                                                       .
-                                                .  intel-power-control -> программа для управления      .
-                                                .                                                       .
-                                                .   частотами графики Intel (для разгона)               .
-                                                .                                                       .
-                                                .                                                       .
-                                                .    А также можно включить специальный параметр        .
-                                                .                                                       .
-                                                .                       ibt=off                         .
-                                                .                                                       .
-                                                .     На случай если у вас kernel panik или запуск      .
-                                                .                                                       .
-                                                .   в черный экран на видеокартах Nvidia особенно для   .
-                                                .                                                       .
-                                                .          Nvidia 3060 lite  , Nvidia 3060 ti           .
-                                                .                                                       .
-                                                .                                                       .
-                                                . И еще включения режима максимальной производительности.
-                                                .                                                       .
-                                                .                      Cpupower                         .
-                                                .                                                       .
-                                                .───────────────────────────────────────────────────────.
-                                                         * Чтобы пропустить нажмите Enter *
-'
+source config/logo/logo20
 echo -e "\t
                                                       ->  Установить Gwe  Nvidia  (  1  )  "
 
@@ -965,30 +376,8 @@ read main_menu
       "5" ) b='source /home/manjaro/shefos/config/Choice/B'
        ;;
       "6" )
-clear3
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                               .───────────────────────────────────────────────────────────.
-                                               .                                                           .
-                                               .                                                           .
-                                               .                  Дополнительные варианты                  .
-                                               .                                                           .
-                                               .                     Страница 1 из 2                       .
-                                               .                                                           .
-                                               .───────────────────────────────────────────────────────────.
-'
+clear
+source config/logo/logo21
 echo -e "\t
                                                         ->  Gwe  +  ibt=off   (  7  )  "
 
@@ -1029,29 +418,7 @@ read main_menu
       ;;
      "13" )
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                               .───────────────────────────────────────────────────────────.
-                                               .                                                           .
-                                               .                                                           .
-                                               .                  Дополнительные варианты                  .
-                                               .                                                           .
-                                               .                     Страница 2 из 2                       .
-                                               .                                                           .
-                                               .───────────────────────────────────────────────────────────.
-'
+source config/logo/logo22
 echo -e "\t
                                                         ->  Corectrl + Cpupower  (  14  )  "
 
@@ -1109,37 +476,12 @@ sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf
 sed -i s/'#Color'/'ILoveCandy'/g /etc/pacman.conf
 sed -i s/'CheckSpace'/'#CheckSpace'/g /etc/pacman.conf
 sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf
-echo '
-
-
-
-
-
-
-
-
-
-───────────────────────────────────────────────────────────────|
-──────────────────────
-────────────────────── ██████╗  █████╗  ██████╗███╗   ███╗ █████╗ ███╗   ██╗
-────────────────────── ██╔══██╗██╔══██╗██╔════╝████╗ ████║██╔══██╗████╗  ██║
-──▒▒▒▒▒────▄████▄───── ██████╔╝███████║██║     ██╔████╔██║███████║██╔██╗ ██║
-─▒─▄▒─▄▒──███▄█▀────── ██╔═══╝ ██╔══██║██║     ██║╚██╔╝██║██╔══██║██║╚██╗██║
-─▒▒▒▒▒▒▒─▐████──█──█── ██║     ██║  ██║╚██████╗██║ ╚═╝ ██║██║  ██║██║ ╚████║
-─▒▒▒▒▒▒▒──█████▄────── ╚═╝     ╚═╝  ╚═╝ ╚═════╝╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝
-─▒─▒─▒─▒───▀████▀─────────────────────────────────────────────────────────────────|
-
-                       Пожалуйста пдождите , идет настройка скачивания пакетов,
-
-                                  это займет пару мнгновений ) .......
-
-              ─────────────────────────────────────────────────────────────────────────────────────|
-'
+source config/logo/logo23
 sleep 4
 pacman-mirrors --fasttrack
 pacman -Syy
 pacman -Sy arch-install-scripts --noconfirm
-basestrap -i /mnt base base-devel linux64 linux64-acpi_call linux64-headers linux-firmware dosfstools btrfs-progs intel-ucode amd-ucode iucode-tool archlinux-keyring manjaro-keyring cups bluez bluez-utils manjaro-tools-base networkmanager dhcpcd dhclient vim nano pipewire pipewire-alsa pipewire-jack wireplumber libwireplumber manjaro-pipewire zsh zsh-completions mhwd mhwd-db python-gobject ccache clang ninja meson make cmake --noconfirm
+source config/base_system
 fstabgen -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash -c "ln -sf /usr/share/zoneinfo/$region /etc/localtime"
 arch-chroot /mnt /bin/bash -c "hwclock --systohc"
@@ -1203,7 +545,7 @@ kde='plasma sddm sddm-kcm konsole kmix dolphin discover manjaro-settings-manager
 #------------------------------
 pacman -Sc --noconfirm
 pacman -Syy
-source config/base
+source config/desktop_base
 
 $a ; $b ; $c ; $d ; $e ; $f ; $g ; $q ; $r ; $s ; $t ; $l ; $o ; $m ; $n
 
@@ -1211,48 +553,7 @@ su manjaro -c "mkdir -p /mnt/home/$username/.config/neofetch"
 mv config/neofetch/config.conf /mnt/home/$username/.config/neofetch/
 #------------------------------------
 clear
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                        ▄▀
-                                    █▀▀▀█▀█
-                                     ▀▄░▄▀
-                                       █                Установка дополнительных пакетов с AUR
-                                     ▄▄█▄▄
-                                      <────────────────────────────────────────────────────────────────────>
-
-                                              Stacer  -> программа очистки системы
-
-                                              Ananicy  -> распределяющий приоритет задач (повышвет отклик системы)
-
-                                              Zramswap  -> Сервис интеллектуального размещения zram в озу
-
-                                              Hardinfo  -> диспетчер устройств
-
-                                              StartWine -> Программа для запуска приложений и игр Windows под линуксом
-
-                                              Grub Customizer  -> Программа для настройки загрузчика GRUB
-
-                                              Sddm-config-editor -> Настройка менеджера входа sddm
-
-                                              Antimicrox -> Программа для работы с геймпадами и джостиками
-
-                                              Onlyoffice -> Офисный пакет
-
-'
+source config/logo/logo24
 sleep 8
 #------------------------MAKEPKG>CONF------------------------------
 rm /etc/makepkg.conf
@@ -1318,38 +619,7 @@ arch-chroot /mnt /bin/bash -c "systemctl enable sddm --force"
 #                     Umount and Exit                  #
 #                                                      #
 #----------------------------------------------------------------------|
-echo '
-
-
-
-
-
-
-
-
-
-
-
-
-
-───────────────────────────────────────────────────────────────────>
-░░░░░░░░░░░░▄▄░░░░░░░░░
-░░░░░░░░░░░█░░█░░░░░░░░
-░░░░░░░░░░░█░░█░░░░░░░░
-░░░░░░░░░░█░░░█░░░░░░░░
-░░░░░░░░░█░░░░█░░░░░░░░
-███████▄▄█░░░░░██████▄░░
-▓▓▓▓▓▓█░░░░░░░░░░░░░░█░
-▓▓▓▓▓▓█░░░░░░░░░░░░░░█░              Установка успешно завершена . Сейчас компьютер будет перезагружен .
-▓▓▓▓▓▓█░░░░░░░░░░░░░░█░
-▓▓▓▓▓▓█░░░░░░░░░░░░░░█░
-▓▓▓▓▓▓█░░░░░░░░░░░░░░█░
-▓▓▓▓▓▓█████░░░░░░░░░█░░
-██████▀░░░░▀▀██████▀░░░░
-  <─────────────────────────────────────────────────────────────────────────────────────────────────────────>
-
-
-'
+source config/logo/logo25
 sleep 5
 arch-chroot /mnt /bin/bash -c "exit"
 umount -R /mnt
