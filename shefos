@@ -1104,7 +1104,7 @@ clear
 #                                                      #
 #----------------------------------------------------------------------|
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
-sed -i s/'#ParallelDownloads = 4'/'ParallelDownloads = 5'/g /etc/pacman.conf
+sed -i s/'#ParallelDownloads = 5'/'ParallelDownloads = 5'/g /etc/pacman.conf
 sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf
 sed -i s/'#Color'/'ILoveCandy'/g /etc/pacman.conf
 sed -i s/'CheckSpace'/'#CheckSpace'/g /etc/pacman.conf
@@ -1154,7 +1154,7 @@ arch-chroot /mnt /bin/bash -c "echo '127.0.0.1 localhost' > /etc/hosts"
 arch-chroot /mnt /bin/bash -c "echo '::1       localhost' >> /etc/hosts"
 arch-chroot /mnt /bin/bash -c "echo '127.0.0.1 Manjaro.localdomain Manjaro' >> /etc/hosts"
 #----------------------------PACMAN--------------------------------------------------------------
-arch-chroot /mnt /bin/bash -c "sed -i s/'#ParallelDownloads = 4'/'ParallelDownloads = 5'/g /etc/pacman.conf"
+arch-chroot /mnt /bin/bash -c "sed -i s/'#ParallelDownloads = 5'/'ParallelDownloads = 5'/g /etc/pacman.conf"
 arch-chroot /mnt /bin/bash -c "sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf"
 arch-chroot /mnt /bin/bash -c "sed -i s/'#Color'/'ILoveCandy'/g /etc/pacman.conf"
 arch-chroot /mnt /bin/bash -c "sed -i s/'CheckSpace'/'#CheckSpace'/g /etc/pacman.conf"
