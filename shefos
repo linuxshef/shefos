@@ -614,6 +614,8 @@ arch-chroot /mnt /bin/bash -c "systemctl enable --now dbus-broker.service"
 arch-chroot /mnt /bin/bash -c "timeshift --check"
 arch-chroot /mnt /bin/bash -c "systemctl enable NetworkManager"
 arch-chroot /mnt /bin/bash -c "systemctl enable sddm --force"
+arch-chroot /mnt /bin/bash -c "firewall-cmd --permanent --zone=public --add-service=kdeconnect"
+arch-chroot /mnt /bin/bash -c "firewall-cmd --reload"
 #----------------------------------------------------------------------|
 #                                                      #
 #                     Umount and Exit                  #
