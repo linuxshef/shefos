@@ -1,0 +1,32 @@
+[$Version]
+update_info=dolphin_detailsmodesettings.upd:rename-leading-padding
+
+[General]
+EditableUrl=true
+RememberOpenedTabs=false
+ShowFullPath=true
+Version=202
+ViewPropsTimestamp=2023,7,18,16,40,56.523
+
+[IconsMode]
+IconSize=48
+MaximumTextLines=2
+
+[KFileDialog Settings]
+Places Icons Auto-resize=false
+Places Icons Static Size=22
+Recent Files[$e]=config.ini,file:$HOME/.local/share/gmv-utils/bin/run_utils,file:$HOME/.local/share/Steam/steamapps/common/Cyber Hunter/config.ini
+Recent URLs[$e]=file:$HOME/.local/share/Steam/steamapps/common/Cyber Hunter/,file:$HOME/.local/share/gmv-utils/bin/
+detailViewIconSize=16
+
+[KPropertiesDialog]
+1920x1080 screen: Height=576
+1920x1080 screen: Width=871
+1920x1080 screen: Window-Maximized=true
+
+[MainWindow]
+MenuBar=Disabled
+ToolBarsMovable=Disabled
+
+[PreviewSettings]
+Plugins=appimagethumbnail,audiothumbnail,comicbookthumbnail,cursorthumbnail,djvuthumbnail,ebookthumbnail,exrthumbnail,imagethumbnail,jpegthumbnail,kraorathumbnail,opendocumentthumbnail,svgthumbnail,windowsexethumbnail,windowsimagethumbnail,fontthumbnail,directorythumbnail,ffmpegthumbs

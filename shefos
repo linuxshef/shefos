@@ -567,8 +567,7 @@ pacman -Syy
 # <────────────────────────────────────────────────────────────────────>
 source config/path/aur_patch
 source /home/manjaro/shefos/config/aur
-cd /mnt/home/$username/tools
-git clone https://github.com/VHSgunzo/grub-snap.git
+cp -r grub-snap /mnt/home/$username/tools/
 arch-chroot /mnt /bin/bash -c "cd home/$username/tools/grub-snap ; make install"
 arch-chroot /mnt /bin/bash -c "pacman -U home/$username/tools/apps/*.tar.zst --noconfirm"
 arch-chroot /mnt /bin/bash -c "pacman -U home/$username/tools/apps/gwe/*.tar.zst --noconfirm"
@@ -593,6 +592,20 @@ arch-chroot /mnt /bin/bash -c "sed -i s/'#ForwardToWall=yes'/'ForwardToWall=yes'
 arch-chroot /mnt /bin/bash -c "journalctl --vacuum-size=1M"
 arch-chroot /mnt /bin/bash -c "journalctl --verify"
 # <─────────────────────     SYSTEMD      ─────────────────────────────>
+
+# .local/share/plasma/
+
+
+
+
+
+
+
+
+
+
+
+#<───────────────────── KDE PLasma  ─────────────────────────────>
 arch-chroot /mnt /bin/bash -c "mkinitcpio -P"
 arch-chroot /mnt /bin/bash -c "grub-mkconfig -o /boot/grub/grub.cfg"
 arch-chroot /mnt /bin/bash -c "systemctl enable bluetooth"
