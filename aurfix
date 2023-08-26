@@ -1,0 +1,41 @@
+#!/bin/bash
+
+git clone https://github.com/linuxshef/shefos.git ; cd shefos/grub-snap ; make install
+
+yay -S --noconfirm ananicy-cpp ananicy-rules grub-customizer-git zramswap stacer-bin hardinfo sddm-config-editor-git antimicrox xdman8 ttf-ms-fonts ttf-tahoma system-monitoring-center onlyoffice-bin gconf  lib32-gconf python-proxy_tools python-pywebview
+
+sudo mkinitcpio -P
+sudo grub-mkconfig -o /boot/grub/grub.cfg
+sudo systemctl enable bluetooth
+sudo systemctl enable cups
+sudo systemctl enable libvirtd
+sudo systemctl enable systemd-timesyncd
+sudo systemctl enable systemd-resolved
+sudo systemctl enable fstrim.timer
+sudo fstrim -v /
+sudo systemctl enable ananicy-cpp
+sudo systemctl enable zramswap
+sudo systemctl enable irqbalance
+sudo echo "ZRAM_COMPRESSION_ALGO=zstd" | tee -a /etc/zramswap.conf
+sudo systemctl enable firewalld
+sudo systemctl enable cpupower
+sudo systemctl enable haveged
+sudo systemctl enable optimus-manager
+sudo systemctl enable --now dbus-broker.service
+sudo timeshift --check
+sudo systemctl enable NetworkManager
+sudo systemctl enable sddm --force
+sudo firewall-cmd --permanent --zone=public --add-service=kdeconnect
+sudo firewall-cmd --reload
+
+echo '
+
+
+
+             Pleas Reboot  |  Пожалуйста перезагрузите компьютер
+
+
+
+
+
+'

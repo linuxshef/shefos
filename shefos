@@ -622,7 +622,7 @@ echo "ZRAM_COMPRESSION_ALGO=zstd" | tee -a /mnt/etc/zramswap.conf
 arch-chroot /mnt /bin/bash -c "systemctl enable firewalld"
 arch-chroot /mnt /bin/bash -c "systemctl enable cpupower"
 arch-chroot /mnt /bin/bash -c "systemctl enable haveged"
-arch-chroot /mnt /bin/bash -c "systemctl enable ${optimus}"
+arch-chroot /mnt /bin/bash -c "${optimus}"
 arch-chroot /mnt /bin/bash -c "systemctl enable --now dbus-broker.service"
 arch-chroot /mnt /bin/bash -c "timeshift --check"
 arch-chroot /mnt /bin/bash -c "systemctl enable NetworkManager"
