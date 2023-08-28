@@ -634,7 +634,7 @@ arch-chroot /mnt /bin/bash -c "firewall-cmd --reload"
 #                     Umount and Exit                  #
 #                                                      #
 #----------------------------------------------------------------------|
-source config/logo/logo25
+source /home/manjaro/shefos/config/logo/logo26
 sleep 5
 arch-chroot /mnt /bin/bash -c "exit"
 umount -R /mnt
