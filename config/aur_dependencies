@@ -17,4 +17,4 @@
 
 
 
-pacman -S base-devel python-gobject extra-cmake-modules sdl2 gobject-introspection libdazzle libappindicator-gtk3 python-cairo python-matplotlib python-peewee python-rx python-pyxdg python-xlib libunistring lib32-libunistring ccache meson autoconf-archive docbook-xml docbook-xsl glib2-docs itstool mallard-ducktype python-anytree python-lxml python-pygments yelp-tools yelp-xsl gnome-common gtk-doc intltool python python-pip make cmake libtool gcc gcc-libs glibc lib32-glibc --noconfirm
+pacman -S base-devel python-gobject extra-cmake-modules sdl2 gobject-introspection libdazzle libappindicator-gtk3 python-cairo python-matplotlib python-peewee python-rx python-pyxdg python-xlib libunistring lib32-libunistring ccache meson autoconf-archive docbook-xml docbook-xsl glib2-docs itstool mallard-ducktype python-lxml python-pygments yelp-tools yelp-xsl gnome-common gtk-doc intltool python python-pip make cmake libtool gcc gcc-libs glibc lib32-glibc --noconfirm
