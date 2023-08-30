@@ -10,7 +10,15 @@
 
 git add *
 
+clear
+
 read -p "
+
+
+
+
+
+
                                                     -> Введите значение : " text
 
 git commit -m '$text'
