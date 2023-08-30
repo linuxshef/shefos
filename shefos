@@ -567,6 +567,22 @@ pacman -Syy
 # <────────────────────────────────────────────────────────────────────>
 source config/path/aur_patch
 source /home/manjaro/shefos/config/aur
+# <────────────────────────────────────────────────────────────────────>
+#
+#        ADVANCED PKG
+#
+
+# Videobloger tools / VScode / Xanmod / balenaetcher
+
+#source advanced/videoblog_tools
+
+#source advanced/vscode
+
+#source advanced/xanmod
+
+#source advanced/balenaetcher
+
+# <────────────────────────────────────────────────────────────────────>
 cp -r grub-snap /mnt/home/$username/tools/
 arch-chroot /mnt /bin/bash -c "cd home/$username/tools/grub-snap ; make install"
 arch-chroot /mnt /bin/bash -c "pacman -U home/$username/tools/apps/*.tar.zst --noconfirm"

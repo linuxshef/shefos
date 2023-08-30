@@ -1,0 +1,19 @@
+
+
+
+
+
+
+
+
+
+
+
+packages=(linux-xanmod-bin)
+for package in "${packages[@]}"; do
+  git clone https://aur.archlinux.org/$package.git
+  chown manjaro /mnt/home/$username/tools/$package
+  cd $package
+  su manjaro -c "export PKGDEST=/mnt/home/$username/tools/apps ; makepkg -src --noconfirm"
+  cd ..
+done

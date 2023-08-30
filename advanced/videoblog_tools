@@ -1,0 +1,29 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+arch-chroot /mnt /bin/bash -c "pacman -Syyuu obs-studio v4l2loopback-dkms gstreamer-vaapi gimp krita blender kdenlive --noconfirm"
+
+
+
+ 
+packages=(simplescreenrecorder lib32-simplescreenrecorder gst-plugin-openh264 obs-vaapi)
+for package in "${packages[@]}"; do
+  git clone https://aur.archlinux.org/$package.git
+  chown manjaro /mnt/home/$username/tools/$package
+  cd $package
+  su manjaro -c "export PKGDEST=/mnt/home/$username/tools/apps ; makepkg -src --noconfirm"
+  cd ..
+done

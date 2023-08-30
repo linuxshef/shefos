@@ -1,0 +1,18 @@
+#!/bin/bash
+
+
+
+
+
+
+
+
+
+git add *
+
+read -p "
+                                                    -> Введите значение : " text
+
+git commit -m '$text'
+
+git push
