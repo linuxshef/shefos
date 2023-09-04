@@ -1,17 +1,7 @@
 #!/bin/bash
 clear
 
-touch updater
-
-echo "#!/bin/bash" >> updater
-
-echo "git add *" >> updater
-
-echo "git commit -m" >> updater
-
-echo "git push" >> updater
-
-chmod +x updater
+touch tmp
 
 read -p "
 
@@ -24,8 +14,12 @@ read -p "
 
 
                                   -> Введите значение :  " text
+echo "git commit -m '$text'" > tmp
 
+git add *
 
-sed -i s/'git commit -m'/"git commit -m '$text'"/g updater
+source tmp
 
-./updater ; rm updater
+#git push
+
+#rm tmp
