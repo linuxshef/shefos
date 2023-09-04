@@ -1,26 +1,9 @@
 #!/bin/bash
 
-
-
-
-
-
-
-
-
 git add *
 
 clear
 
-read -p "
-
-
-
-
-
-
-                                                    -> Введите значение : " text
-
-git commit -m '$text'
+git commit -m 'update git updater'
 
 git push
