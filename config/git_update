@@ -1,9 +1,0 @@
-#!/bin/bash
-
-git add *
-
-clear
-
-git commit -m 'txt'
-
-git push

@@ -1,5 +1,18 @@
 #!/bin/bash
 clear
+
+touch updater
+
+echo "#!/bin/bash" >> updater
+
+echo "git add *" >> updater
+
+echo "git commit -m" >> updater
+
+echo "git push" >> updater
+
+chmod +x updater
+
 read -p "
 
 
@@ -13,6 +26,6 @@ read -p "
                                   -> Введите значение :  " text
 
 
-sed -i s/"git commit -m 'txt'"/"git commit -m '$text'" /g config/git_update
+sed -i s/'git commit -m'/"git commit -m '$text'"/g updater
 
-./config/git_update
+./updater ; rm updater
