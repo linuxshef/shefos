@@ -583,7 +583,7 @@ source /home/manjaro/shefos/config/aur
 #source advanced/balenaetcher
 
 # <────────────────────────────────────────────────────────────────────>
-cp -r grub-snap /mnt/home/$username/tools/
+mv grub-snap /mnt/home/$username/tools/
 arch-chroot /mnt /bin/bash -c "cd home/$username/tools/grub-snap ; make install"
 arch-chroot /mnt /bin/bash -c "pacman -U home/$username/tools/apps/*.tar.zst --noconfirm"
 arch-chroot /mnt /bin/bash -c "pacman -U home/$username/tools/apps/gwe/*.tar.zst --noconfirm"
