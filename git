@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 
-touch tmp
+touch config/tmp
 
 read -p "
 
@@ -14,12 +14,12 @@ read -p "
 
 
                                   -> Введите значение :  " text
-echo "git commit -m '$text'" > tmp
+echo "git commit -m '$text'" > config/tmp
 
 git add *
 
-source tmp
+source config/tmp
 
-#git push
+git push
 
-#rm tmp
+rm config/tmp

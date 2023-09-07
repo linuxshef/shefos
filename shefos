@@ -584,15 +584,14 @@ source /home/manjaro/shefos/config/aur
 #source advanced/balenaetcher
 
 # <────────────────────────────────────────────────────────────────────>
-mv grub-snap /mnt/home/$username/tools/
-arch-chroot /mnt /bin/bash -c "cd home/$username/tools/grub-snap ; make install"
-arch-chroot /mnt /bin/bash -c "pacman -U home/$username/tools/apps/*.tar.zst --noconfirm"
-arch-chroot /mnt /bin/bash -c "pacman -U home/$username/tools/apps/gwe/*.tar.zst --noconfirm"
-arch-chroot /mnt /bin/bash -c "pacman -U home/$username/tools/apps/pypyweb/*.tar.zst --noconfirm"
-arch-chroot /mnt /bin/bash -c "pacman -U home/$username/tools/apps/gc/*.tar.zst --noconfirm"
-arch-chroot /mnt /bin/bash -c "pacman -S $CTRL --noconfirm"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 cd home/$username/tools/ ; git clone https://github.com/VHSgunzo/grub-snap.git ; cd grub-snap ; make install"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/*.tar.zst --noconfirm"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gwe/*.tar.zst --noconfirm"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/pypyweb/*.tar.zst --noconfirm"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gc/*.tar.zst --noconfirm"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -S $CTRL --noconfirm"
 arch-chroot /mnt /bin/bash -c "rm -Rf home/$username/tools"
-arch-chroot /mnt /bin/bash -c "fc-cache --force"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 fc-cache --force"
 # <─────────────────────     OpenGL      ──────────────────────────────>
 echo "__GL_THREADED_OPTIMIZATIONS=1" >> /mnt/etc/environment
 echo "MESA_GL_VERSION_OVERRIDE=4.5" >> /mnt/etc/environment
@@ -606,8 +605,8 @@ arch-chroot /mnt /bin/bash -c "sed -i s/'#RuntimeMaxFileSize='/'RuntimeMaxFileSi
 arch-chroot /mnt /bin/bash -c "sed -i s/'#RuntimeMaxFiles=100'/'RuntimeMaxFiles=1'/g /etc/systemd/journald.conf"
 arch-chroot /mnt /bin/bash -c "sed -i s/'#ForwardToSyslog=no'/'ForwardToSyslog=no'/g /etc/systemd/journald.conf"
 arch-chroot /mnt /bin/bash -c "sed -i s/'#ForwardToWall=yes'/'ForwardToWall=yes'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "journalctl --vacuum-size=1M"
-arch-chroot /mnt /bin/bash -c "journalctl --verify"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 journalctl --vacuum-size=1M"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 journalctl --verify"
 # <─────────────────────     SYSTEMD      ─────────────────────────────>
 
 # .local/share/plasma/
@@ -623,29 +622,29 @@ arch-chroot /mnt /bin/bash -c "journalctl --verify"
 
 
 #<───────────────────── KDE PLasma  ─────────────────────────────>
-arch-chroot /mnt /bin/bash -c "mkinitcpio -P"
-arch-chroot /mnt /bin/bash -c "grub-mkconfig -o /boot/grub/grub.cfg"
-arch-chroot /mnt /bin/bash -c "systemctl enable bluetooth"
-arch-chroot /mnt /bin/bash -c "systemctl enable cups"
-arch-chroot /mnt /bin/bash -c "systemctl enable libvirtd"
-arch-chroot /mnt /bin/bash -c "systemctl enable systemd-timesyncd"
-arch-chroot /mnt /bin/bash -c "systemctl enable systemd-resolved"
-arch-chroot /mnt /bin/bash -c "systemctl enable fstrim.timer"
-arch-chroot /mnt /bin/bash -c "fstrim -v /"
-arch-chroot /mnt /bin/bash -c "systemctl enable ananicy-cpp"
-arch-chroot /mnt /bin/bash -c "systemctl enable zramswap"
-arch-chroot /mnt /bin/bash -c "systemctl enable irqbalance"
-echo "ZRAM_COMPRESSION_ALGO=zstd" | tee -a /mnt/etc/zramswap.conf
-arch-chroot /mnt /bin/bash -c "systemctl enable firewalld"
-arch-chroot /mnt /bin/bash -c "systemctl enable cpupower"
-arch-chroot /mnt /bin/bash -c "systemctl enable haveged"
-arch-chroot /mnt /bin/bash -c "${optimus}"
-arch-chroot /mnt /bin/bash -c "systemctl enable --now dbus-broker.service"
-arch-chroot /mnt /bin/bash -c "timeshift --check"
-arch-chroot /mnt /bin/bash -c "systemctl enable NetworkManager"
-arch-chroot /mnt /bin/bash -c "systemctl enable sddm --force"
-arch-chroot /mnt /bin/bash -c "firewall-cmd --permanent --zone=public --add-service=kdeconnect"
-arch-chroot /mnt /bin/bash -c "firewall-cmd --reload"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 mkinitcpio -P"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 grub-mkconfig -o /boot/grub/grub.cfg"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable bluetooth"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable cups"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable libvirtd"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable systemd-timesyncd"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable systemd-resolved"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable fstrim.timer"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 fstrim -v /"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable ananicy-cpp"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable zramswap"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable irqbalance"
+SKIP_AUTOSNAP=1 echo "ZRAM_COMPRESSION_ALGO=zstd" | tee -a /mnt/etc/zramswap.conf
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable firewalld"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable cpupower"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable haveged"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 ${optimus}"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable --now dbus-broker.service"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 timeshift --check"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable NetworkManager"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable sddm --force"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --permanent --zone=public --add-service=kdeconnect"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --reload"
 #----------------------------------------------------------------------|
 #                                                      #
 #                     Umount and Exit                  #
