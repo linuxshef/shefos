@@ -22,4 +22,4 @@ source config/tmp
 
 git push
 
-rm config/tmp
+rm tmp
