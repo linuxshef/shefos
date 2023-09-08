@@ -300,7 +300,7 @@ read main_menu
          read -p "
                                                            -> Введите значение : " namedriver
 
-         hwddriver='mhwd --install pci $namedriver'
+         hwddriver='mhwd -i pci $namedriver'
       esac
 
         ;;
