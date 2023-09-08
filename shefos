@@ -479,7 +479,7 @@ sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf
 source config/logo/logo23
 sleep 4
 pacman-mirrors --fasttrack
-pacman -Syy
+pacman -Syy archlinux-keyring manjaro-keyring --noconfirm
 pacman -Sy arch-install-scripts --noconfirm
 source config/base_system
 fstabgen -U /mnt >> /mnt/etc/fstab
