@@ -2,7 +2,7 @@
 ------------------------------
 
 
-Neofetch из скрипта, скопировать команду цкликом и вставить в терминал
+Neofetch из скрипта, скопировать команду и вставить в терминал
 
 ```bash
 sudo pacman -Syy git lolcat --noconfirm ;  git clone https://github.com/linuxshef/shefos.git ; rm -Rf ~/.config/neofetch/config.conf ; mv shefos/config/neofetch/config.conf ~/.config/neofetch/ ; rm -Rf shefos
