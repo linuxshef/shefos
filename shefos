@@ -537,12 +537,6 @@ arch-chroot /mnt /bin/bash -c "pacman -Syyuu --noconfirm"
 arch-chroot /mnt /bin/bash -c "${nvidia_driver}"
 arch-chroot /mnt /bin/bash -c "${hwddriver}"
 ${graphc_drivers}
-#----------------------------------------------
-#
-#                DE графические оболочки
-#
-kde='plasma sddm sddm-kcm konsole kmix dolphin discover manjaro-settings-manager-kcm plasma-wayland-session ksysguard'
-#
 #------------------------------
 pacman -Sc --noconfirm
 pacman -Syy
