@@ -578,7 +578,9 @@ source /home/manjaro/shefos/config/aur
 #source advanced/balenaetcher
 
 # <────────────────────────────────────────────────────────────────────>
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 cd home/$username/tools/ ; git clone https://github.com/VHSgunzo/grub-snap.git ; cd grub-snap ; make install"
+cd /mnt/home/$username/tools/
+git clone https://github.com/VHSgunzo/grub-snap.git
+arch-chroot /mnt /bin/bash -c "cd home/$username/tools/grub-snap ; SKIP_AUTOSNAP=1 make install"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/*.tar.zst --noconfirm"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gwe/*.tar.zst --noconfirm"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/pypyweb/*.tar.zst --noconfirm"
