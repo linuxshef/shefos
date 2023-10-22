@@ -652,4 +652,3 @@ arch-chroot /mnt /bin/bash -c "exit"
 umount -R /mnt
 clear
 reboot
-
