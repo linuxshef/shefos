@@ -593,16 +593,16 @@ echo "__GL_THREADED_OPTIMIZATIONS=1" >> /mnt/etc/environment
 echo "MESA_GL_VERSION_OVERRIDE=4.5" >> /mnt/etc/environment
 echo "MESA_GLSL_VERSION_OVERRIDE=450" >> /mnt/etc/environment
 # <─────────────────────      SYSTEMD  ────────────────────────────────>
-arch-chroot /mnt /bin/bash -c "sed -i s/'#SystemMaxUse='/'SystemMaxUse=1'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#SystemMaxFileSize='/'SystemMaxFileSize=1'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#SystemMaxFiles=100'/'SystemMaxFiles=1'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#RuntimeMaxUse='/'RuntimeMaxUse=1'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#RuntimeMaxFileSize='/'RuntimeMaxFileSize=1'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#RuntimeMaxFiles=100'/'RuntimeMaxFiles=1'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#ForwardToSyslog=no'/'ForwardToSyslog=no'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#ForwardToWall=yes'/'ForwardToWall=yes'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 journalctl --vacuum-size=1M"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 journalctl --verify"
+#arch-chroot /mnt /bin/bash -c "sed -i s/'#SystemMaxUse='/'SystemMaxUse=1'/g /etc/systemd/journald.conf"
+#arch-chroot /mnt /bin/bash -c "sed -i s/'#SystemMaxFileSize='/'SystemMaxFileSize=1'/g /etc/systemd/journald.conf"
+#arch-chroot /mnt /bin/bash -c "sed -i s/'#SystemMaxFiles=100'/'SystemMaxFiles=1'/g /etc/systemd/journald.conf"
+#arch-chroot /mnt /bin/bash -c "sed -i s/'#RuntimeMaxUse='/'RuntimeMaxUse=1'/g /etc/systemd/journald.conf"
+#arch-chroot /mnt /bin/bash -c "sed -i s/'#RuntimeMaxFileSize='/'RuntimeMaxFileSize=1'/g /etc/systemd/journald.conf"
+#arch-chroot /mnt /bin/bash -c "sed -i s/'#RuntimeMaxFiles=100'/'RuntimeMaxFiles=1'/g /etc/systemd/journald.conf"
+#arch-chroot /mnt /bin/bash -c "sed -i s/'#ForwardToSyslog=no'/'ForwardToSyslog=no'/g /etc/systemd/journald.conf"
+#arch-chroot /mnt /bin/bash -c "sed -i s/'#ForwardToWall=yes'/'ForwardToWall=yes'/g /etc/systemd/journald.conf"
+#arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 journalctl --vacuum-size=1M"
+#arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 journalctl --verify"
 # <─────────────────────     SYSTEMD      ─────────────────────────────>
 
 # .local/share/plasma/
