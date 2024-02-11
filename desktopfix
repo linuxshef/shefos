@@ -6,16 +6,16 @@ sudo pacman -Syy  xorg xorg-xrandr xorg-server xdg-utils xorg-xinit xdg-user-dir
 sudo echo "__GL_THREADED_OPTIMIZATIONS=1" >> /mnt/etc/environment
 sudo echo "MESA_GL_VERSION_OVERRIDE=4.5" >> /mnt/etc/environment
 sudo echo "MESA_GLSL_VERSION_OVERRIDE=450" >> /mnt/etc/environment
-sudo sed -i s/'#SystemMaxUse='/'SystemMaxUse=1'/g /etc/systemd/journald.conf
-sudo sed -i s/'#SystemMaxFileSize='/'SystemMaxFileSize=1'/g /etc/systemd/journald.conf
-sudo sed -i s/'#SystemMaxFiles=100'/'SystemMaxFiles=1'/g /etc/systemd/journald.conf
-sudo sed -i s/'#RuntimeMaxUse='/'RuntimeMaxUse=1'/g /etc/systemd/journald.conf
-sudo sed -i s/'#RuntimeMaxFileSize='/'RuntimeMaxFileSize=1'/g /etc/systemd/journald.conf
-sudo sed -i s/'#RuntimeMaxFiles=100'/'RuntimeMaxFiles=1'/g /etc/systemd/journald.conf
-sudo sed -i s/'#ForwardToSyslog=no'/'ForwardToSyslog=no'/g /etc/systemd/journald.conf
-sudo sed -i s/'#ForwardToWall=yes'/'ForwardToWall=yes'/g /etc/systemd/journald.conf
-sudo journalctl --vacuum-size=1M
-sudo journalctl --verify
+#sudo sed -i s/'#SystemMaxUse='/'SystemMaxUse=1'/g /etc/systemd/journald.conf
+#sudo sed -i s/'#SystemMaxFileSize='/'SystemMaxFileSize=1'/g /etc/systemd/journald.conf
+#sudo sed -i s/'#SystemMaxFiles=100'/'SystemMaxFiles=1'/g /etc/systemd/journald.conf
+#sudo sed -i s/'#RuntimeMaxUse='/'RuntimeMaxUse=1'/g /etc/systemd/journald.conf
+#sudo sed -i s/'#RuntimeMaxFileSize='/'RuntimeMaxFileSize=1'/g /etc/systemd/journald.conf
+#sudo sed -i s/'#RuntimeMaxFiles=100'/'RuntimeMaxFiles=1'/g /etc/systemd/journald.conf
+#sudo sed -i s/'#ForwardToSyslog=no'/'ForwardToSyslog=no'/g /etc/systemd/journald.conf
+#sudo sed -i s/'#ForwardToWall=yes'/'ForwardToWall=yes'/g /etc/systemd/journald.conf
+#sudo journalctl --vacuum-size=1M
+#sudo journalctl --verify
 sudo mkinitcpio -p linux-xanmod
 sudo mkinitcpio -p linux-xanmod
 sudo grub-mkconfig -o /boot/grub/grub.cfg
@@ -27,7 +27,7 @@ sudo systemctl enable systemd-resolved
 sudo systemctl enable fstrim.timer
 sudo fstrim -v /
 sudo systemctl enable ananicy-cpp
-sudo systemctl enable zramswap
+#sudo systemctl enable zramswap
 sudo systemctl enable irqbalance
 sudo swapoff -a
 sudo echo "ZRAM_COMPRESSION_ALGO=zstd" | tee -a /etc/zramswap.conf
