@@ -481,6 +481,7 @@ sed -i s/'ParallelDownloads = 4'/'ParallelDownloads = 5'/g /etc/pacman.conf
 sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf
 sed -i s/'#Color'/'ILoveCandy'/g /etc/pacman.conf
 sed -i s/'CheckSpace'/'#CheckSpace'/g /etc/pacman.conf
+sed -i s/'#IgnorePkg   ='/'IgnorePkg   = discover'/g /etc/pacman.conf
 sed -i 's/^#\[custom]/\[chaotic-aur\]/' /etc/pacman.conf
 sed -i "s/^#SigLevel = Optional TrustAll/Include = \/etc\/pacman.d\/chaotic-mirrorlist/" /etc/pacman.conf
 #----------------------------------------------------------------------------------------#
