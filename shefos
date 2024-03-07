@@ -543,7 +543,8 @@ arch-chroot /mnt /bin/bash -c "mkinitcpio -P"
 arch-chroot /mnt /bin/bash -c "grub-mkconfig -o /boot/grub/grub.cfg"
 pacman -Sc --noconfirm
 pacman -Syy
-arch-chroot /mnt /bin/bash -c "pacman-mirrors --fasttrack"
+rm -Rf /mnt/etc/pacman.d/mirrorlist
+cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
 arch-chroot /mnt /bin/bash -c "pacman -Syyuu archlinux-keyring manjaro-keyring chaotic-keyring --noconfirm"
 #-----------------------------------------------------
 arch-chroot /mnt /bin/bash -c "${nvidia_driver}"
