@@ -552,7 +552,6 @@ arch-chroot /mnt /bin/bash -c "${hwddriver}"
 ${graphc_drivers}
 #------------------------------
 pacman -Sc --noconfirm
-pacman -Syy
 source config/desktop_base
 
 $a ; $b ; $c ; $d ; $e ; $f ; $g ; $q ; $r ; $s ; $t ; $l ; $o ; $m ; $n
