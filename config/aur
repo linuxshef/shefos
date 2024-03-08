@@ -1,27 +1,36 @@
 
-
-
-
-
-
-
-
-
 # ttf-kochi-substitute не работает
-
-
-
-
-
-
-
-
-
-
+# <────────────────────────────────────────────────────────────────────>
 
 pacman -Sc --noconfirm
 pacman -Syy
-packages=(otf-takao grub-customizer-git stacer-bin sddm-config-editor-git ttf-tahoma lib32-gconf python-proxy_tools python-pywebview $IPC)
+packages=(otf-takao python-proxy_tools)
+for package in "${packages[@]}"; do
+  git clone https://aur.archlinux.org/$package.git
+  chown manjaro /mnt/home/$username/tools/$package
+  cd $package
+  su manjaro -c "export PKGDEST=/mnt/home/$username/tools/apps ; makepkg -src --noconfirm"
+  cd ..
+done
+
+pacman -U /mnt/home/$username/tools/apps/*.tar.zst --noconfirm
+
+pacman -Sc --noconfirm
+pacman -Syy
+packages=(python-pywebview)
+for package in "${packages[@]}"; do
+  git clone https://aur.archlinux.org/$package.git
+  chown manjaro /mnt/home/$username/tools/$package
+  cd $package
+  su manjaro -c "export PKGDEST=/mnt/home/$username/tools/apps ; makepkg -src --noconfirm"
+  cd ..
+done
+
+pacman -U /mnt/home/$username/tools/apps/*.tar.zst --noconfirm
+
+pacman -Sc --noconfirm
+pacman -Syy
+packages=(grub-customizer-git sddm-config-editor-git ttf-tahoma lib32-gconf $IPC)
 for package in "${packages[@]}"; do
   git clone https://aur.archlinux.org/$package.git
   chown manjaro /mnt/home/$username/tools/$package

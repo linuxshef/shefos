@@ -568,11 +568,11 @@ cp makepkg/makepkg.conf /etc/
 # <────────────────────────────────────────────────────────────────────>
 pacman -Sc --noconfirm
 pacman -Syy
+source config/path/aur_patch
 source config/aur_dependencies
 pacman -Sc --noconfirm
 pacman -Syy
 # <────────────────────────────────────────────────────────────────────>
-source config/path/aur_patch
 source /home/manjaro/shefos/config/aur
 # <────────────────────────────────────────────────────────────────────>
 #
