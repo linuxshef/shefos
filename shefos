@@ -556,7 +556,20 @@ source config/desktop_base
 
 $a ; $b ; $c ; $d ; $e ; $f ; $g ; $q ; $r ; $s ; $t ; $l ; $o ; $m ; $n
 
+#------------------------------------
 su manjaro -c "mkdir -p /mnt/home/$username/.config/neofetch"
+su manjaro -c "mkdir -p /mnt/home/$username/.config/flameshot"
+#su manjaro -c
+#su manjaro -c
+#su manjaro -c
+#su manjaro -c
+#su manjaro -c
+#------------------------------------
+mv config/kde/config/dolphinrc /mnt/home/$username/.config/
+mv config/kde/config/kxkbrc /mnt/home/$username/.config/
+mv config/kde/config/plasma-welcomerc /mnt/home/$username/.config/
+mv config/kde/config/systemsettingsrc /mnt/home/$username/.config/
+mv config/kde/config/flameshot.ini /mnt/home/$username/.config/flameshot
 mv config/neofetch/config.conf /mnt/home/$username/.config/neofetch/
 #------------------------------------
 clear
