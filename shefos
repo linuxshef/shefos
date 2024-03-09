@@ -611,8 +611,8 @@ arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/ap
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/pypyweb/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gc/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -S $CTRL --noconfirm >/dev/null 2>&1; RETVAL=$?"
-arch-chroot /mnt /bin/bash -c "rm -Rf home/$username/tools >/dev/null 2>&1; RETVAL=$?"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 fc-cache --force >/dev/null 2>&1; RETVAL=$?"
+rm -Rf /mnt/home/$username/tools >/dev/null 2>&1; RETVAL=$?
 # <─────────────────────     OpenGL      ──────────────────────────────>
 echo "__GL_THREADED_OPTIMIZATIONS=1" >> /mnt/etc/environment
 echo "MESA_GL_VERSION_OVERRIDE=4.5" >> /mnt/etc/environment
