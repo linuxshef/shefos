@@ -1,6 +1,38 @@
 # shefos
 ------------------------------
 
+Запуск установки
+
+1)
+
+Открыть терминал и выполнить следующие команды
+
+2)
+```bash
+sudo su
+```
+3)
+```bash
+git clone https://github.com/linuxshef/shefos.git ; cd shefos ; chmod +x shefos ; ./shefos
+```
+-------------------------------
+
+Запуск установки с рабочим столом Gnome
+
+1)
+
+Открыть терминал и выполнить следующие команды
+
+2)
+```bash
+sudo su
+```
+3)
+```bash
+git clone https://github.com/linuxshef/shefos.git ; cd shefos ; chmod +x shefos ; ./gnome
+```
+
+-------------------------------
 
 Neofetch из скрипта, скопировать команду и вставить в терминал
 
