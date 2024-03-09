@@ -518,8 +518,6 @@ sed -i "s/^#SigLevel = Optional TrustAll/Include = \/etc\/pacman.d\/chaotic-mirr
 arch-chroot /mnt /bin/bash -c "sed -i s/'# %wheel ALL=(ALL:ALL) ALL'/'%wheel ALL=(ALL:ALL) ALL'/g /etc/sudoers"
 #----------------------------SUDOERS------------------------------------------------------------------
 echo "root:$userpassword" | arch-chroot /mnt chpasswd
-arch-chroot /mnt /bin/bash -c "mkinitcpio -P"
-arch-chroot /mnt /bin/bash -c "pacman -Syyu grub grub-btrfs efibootmgr --noconfirm"
 arch-chroot /mnt /bin/bash -c "useradd -m -G wheel -s /bin/bash $username"
 echo "$username:$userpassword" | arch-chroot /mnt chpasswd
 arch-chroot /mnt /bin/bash -c "systemctl enable NetworkManager"
@@ -539,8 +537,6 @@ arch-chroot /mnt /bin/bash -c "sed -i s/'HOOKS=(base udev autodetect modconf kms
 rm /mnt/etc/makepkg.conf
 cp makepkg/makepkg.conf /mnt/etc/
 #-----------------------------------------------
-arch-chroot /mnt /bin/bash -c "mkinitcpio -P"
-arch-chroot /mnt /bin/bash -c "grub-mkconfig -o /boot/grub/grub.cfg"
 pacman -Sc --noconfirm
 pacman -Syy
 rm -Rf /mnt/etc/pacman.d/mirrorlist
