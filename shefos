@@ -568,7 +568,7 @@ mv config/kde/config/systemsettingsrc /mnt/home/$username/.config/
 mv config/kde/config/flameshot.ini /mnt/home/$username/.config/flameshot
 mv config/neofetch/config.conf /mnt/home/$username/.config/neofetch/
 mv config/neofetch/owl.txt /mnt/home/$username/.config/neofetch/
-sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
+#sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
 #------------------------------------
 source config/logo/logo24
 sleep 8
@@ -606,13 +606,13 @@ source /home/manjaro/shefos/config/aur
 cd /mnt/home/$username/tools/
 git clone https://github.com/VHSgunzo/grub-snap.git
 arch-chroot /mnt /bin/bash -c "cd home/$username/tools/grub-snap ; SKIP_AUTOSNAP=1 make install"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/*.tar.zst --noconfirm"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gwe/*.tar.zst --noconfirm"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/pypyweb/*.tar.zst --noconfirm"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gc/*.tar.zst --noconfirm"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -S $CTRL --noconfirm"
-arch-chroot /mnt /bin/bash -c "rm -Rf home/$username/tools"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 fc-cache --force"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gwe/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/pypyweb/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gc/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -S $CTRL --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "rm -Rf home/$username/tools >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 fc-cache --force >/dev/null 2>&1; RETVAL=$?"
 # <─────────────────────     OpenGL      ──────────────────────────────>
 echo "__GL_THREADED_OPTIMIZATIONS=1" >> /mnt/etc/environment
 echo "MESA_GL_VERSION_OVERRIDE=4.5" >> /mnt/etc/environment
@@ -635,16 +635,16 @@ arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable ananicy-cpp"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable zramswap"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable irqbalance"
 SKIP_AUTOSNAP=1 echo "ZRAM_COMPRESSION_ALGO=zstd" | tee -a /mnt/etc/zramswap.conf
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable firewalld" >/dev/null 2>&1; RETVAL=$?
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable firewalld"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable cpupower"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable haveged"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 ${optimus}"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable --now dbus-broker.service" >/dev/null 2>&1; RETVAL=$?
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 timeshift --check" >/dev/null 2>&1; RETVAL=$?
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable --now dbus-broker.service"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 timeshift --check"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable NetworkManager"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable sddm --force" >/dev/null 2>&1; RETVAL=$?
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --permanent --zone=public --add-service=kdeconnect" >/dev/null 2>&1; RETVAL=$?
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --reload" >/dev/null 2>&1; RETVAL=$?
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable sddm --force"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --permanent --zone=public --add-service=kdeconnect"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --reload"
 #----------------------------------------------------------------------|
 #                                                      #
 #                     Umount and Exit                  #
