@@ -25,7 +25,7 @@ chmod 644 /etc/vconsole.conf
 setfont cyr-sun16
 locale-gen >/dev/null 2>&1; RETVAL=$?
 systemctl restart dhcpcd
-dhcpcd >/dev/null
+dhcpcd >/dev/null 2>&1; RETVAL=$?
 clear
 source config/logo/logo2
 sleep 6
