@@ -477,7 +477,7 @@ pacman-key --lsign-key 3056513887B78AEB
 pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
 pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
-sed -i s/'ParallelDownloads = 4'/'ParallelDownloads = 5'/g /etc/pacman.conf
+sed -i s/'ParallelDownloads = 4'/'ParallelDownloads = 4'/g /etc/pacman.conf
 sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf
 sed -i s/'#Color'/'ILoveCandy'/g /etc/pacman.conf
 sed -i s/'CheckSpace'/'#CheckSpace'/g /etc/pacman.conf
