@@ -619,7 +619,11 @@ arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 fc-cache --force"
 echo "__GL_THREADED_OPTIMIZATIONS=1" >> /mnt/etc/environment
 echo "MESA_GL_VERSION_OVERRIDE=4.5" >> /mnt/etc/environment
 echo "MESA_GLSL_VERSION_OVERRIDE=450" >> /mnt/etc/environment
+# <─────────────────────     LUX WINE      ──────────────────────────────>
 
+#arch-chroot /mnt /bin/bash -c "su $username -c curl -sL lwrap.github.io|bash"
+
+# <─────────────────────     LUX WINE   ──────────────────────────────>
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 mkinitcpio -P"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 grub-mkconfig -o /boot/grub/grub.cfg"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable bluetooth"
