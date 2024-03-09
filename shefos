@@ -487,7 +487,7 @@ sed -i "s/^#SigLevel = Optional TrustAll/Include = \/etc\/pacman.d\/chaotic-mirr
 #----------------------------------------------------------------------------------------#
 pacman-mirrors --fasttrack
 pacman -Syy archlinux-keyring manjaro-keyring chaotic-keyring --noconfirm
-pacman -Sy arch-install-scripts --noconfirm
+pacman -S arch-install-scripts --noconfirm
 source config/base_system
 fstabgen -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash -c "ln -sf /usr/share/zoneinfo/$region /etc/localtime"
@@ -636,16 +636,16 @@ arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable ananicy-cpp"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable zramswap"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable irqbalance"
 SKIP_AUTOSNAP=1 echo "ZRAM_COMPRESSION_ALGO=zstd" | tee -a /mnt/etc/zramswap.conf
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable firewalld"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable firewalld" >/dev/null 2>&1; RETVAL=$?
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable cpupower"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable haveged"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 ${optimus}"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable --now dbus-broker.service"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 timeshift --check"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable --now dbus-broker.service" >/dev/null 2>&1; RETVAL=$?
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 timeshift --check" >/dev/null 2>&1; RETVAL=$?
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable NetworkManager"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable sddm --force"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --permanent --zone=public --add-service=kdeconnect"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --reload"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable sddm --force" >/dev/null 2>&1; RETVAL=$?
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --permanent --zone=public --add-service=kdeconnect" >/dev/null 2>&1; RETVAL=$?
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --reload" >/dev/null 2>&1; RETVAL=$?
 #----------------------------------------------------------------------|
 #                                                      #
 #                     Umount and Exit                  #
