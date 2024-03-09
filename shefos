@@ -581,10 +581,9 @@ sleep 8
 rm /etc/makepkg.conf
 cp makepkg/makepkg.conf /etc/
 # <────────────────────────────────────────────────────────────────────>
-pacman -Sc --noconfirm
-pacman -Syy
 source config/path/aur_patch
-source config/aur_dependencies
+pacman -Sc --noconfirm
+source /home/manjaro/shefos/config/aur_dependencies
 pacman -Sc --noconfirm
 pacman -Syy
 # <────────────────────────────────────────────────────────────────────>
