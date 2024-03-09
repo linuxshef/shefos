@@ -570,7 +570,6 @@ mv config/neofetch/config.conf /mnt/home/$username/.config/neofetch/
 mv config/neofetch/owl.txt /mnt/home/$username/.config/neofetch/
 sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
 #------------------------------------
-clear
 source config/logo/logo24
 sleep 8
 #------------------------MAKEPKG>CONF------------------------------
