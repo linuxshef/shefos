@@ -548,28 +548,20 @@ arch-chroot /mnt /bin/bash -c "${hwddriver}"
 ${graphc_drivers}
 #------------------------------
 pacman -Sc --noconfirm
+
 source config/desktop_base
+
+arch-chroot /mnt /bin/bash -c "pacman -R discover --noconfirm"
 
 $a ; $b ; $c ; $d ; $e ; $f ; $g ; $q ; $r ; $s ; $t ; $l ; $o ; $m ; $n
 
-#------------------------------------
-su manjaro -c "mkdir -p /mnt/home/$username/.config/neofetch"
-su manjaro -c "mkdir -p /mnt/home/$username/.config/flameshot"
-#su manjaro -c
-#su manjaro -c
-#su manjaro -c
-#su manjaro -c
-#su manjaro -c
-#------------------------------------
-mv config/kde/config/dolphinrc /mnt/home/$username/.config/
-mv config/kde/config/kxkbrc /mnt/home/$username/.config/
-mv config/kde/config/plasma-welcomerc /mnt/home/$username/.config/
-mv config/kde/config/systemsettingsrc /mnt/home/$username/.config/
-mv config/kde/config/flameshot.ini /mnt/home/$username/.config/flameshot
-mv config/neofetch/config.conf /mnt/home/$username/.config/neofetch/
-mv config/neofetch/owl.txt /mnt/home/$username/.config/neofetch/
-#sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
-#------------------------------------
+#----------KDE CONFIG--------------------------
+
+
+source config/kde_config
+
+
+#-----------KDE CONFIG-------------------------
 source config/logo/logo24
 sleep 8
 #------------------------MAKEPKG>CONF------------------------------

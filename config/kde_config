@@ -1,0 +1,44 @@
+
+
+
+
+
+#------------FOLDERS------------------------#
+
+su manjaro -c "mkdir -p /mnt/home/$username/.config/neofetch"
+su manjaro -c "mkdir -p /mnt/home/$username/.config/flameshot"
+#su manjaro -c
+#su manjaro -c
+#su manjaro -c
+#su manjaro -c
+#su manjaro -c
+
+#------------CONFIGS------------------------#
+
+#mv config/kde/config/dolphinrc /mnt/home/$username/.config/
+mv config/kde/config/kxkbrc /mnt/home/$username/.config/
+mv config/kde/config/plasma-welcomerc /mnt/home/$username/.config/
+mv config/kde/config/systemsettingsrc /mnt/home/$username/.config/
+mv config/kde/config/flameshot.ini /mnt/home/$username/.config/flameshot
+mv config/neofetch/config.conf /mnt/home/$username/.config/neofetch/
+mv config/neofetch/owl.txt /mnt/home/$username/.config/neofetch/
+mv config/kde/config/khotkeysrc /mnt/home/$username/.config/
+mv config/kde/config/kglobalshortcutsrc /mnt/home/$username/.config/
+#sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
+
+#-----------PERMISSIONS-------------------#
+
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/neofetch"
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/neofetch/config.conf"
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/neofetch/owl.txt"
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/flameshot"
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/flameshot/flameshot.ini"
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/kxkbrc"
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/plasma-welcomerc"
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/systemsettingsrc"
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/khotkeysrc"
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/kglobalshortcutsrc"
+#arch-chroot /mnt /bin/bash -c "chown -c $username:$username "
+#arch-chroot /mnt /bin/bash -c "chown -c $username:$username "
+#arch-chroot /mnt /bin/bash -c "chown -c $username:$username "
+#arch-chroot /mnt /bin/bash -c "chown -c $username:$username "
