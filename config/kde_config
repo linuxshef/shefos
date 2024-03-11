@@ -60,6 +60,8 @@ mv config/kde/config/kfontinstuirc /mnt/home/$username/.config/
 mv config/kde/sweet/Sweet-Dark /mnt/home/$username/.local/share/aurorae/themes/
 mv config/kde/sweet/Sweet-Dark-transparent /mnt/home/$username/.local/share/aurorae/themes/
 mv config/kde/sweet/Sweet.colors /mnt/home/$username/.local/share/color-schemes/
+mv config/kde/config/kwalletrc /mnt/home/$username/.config/
+mv config/kde/config/Trolltech.conf /mnt/home/$username/.config/
 
 #sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
 #-----------PERMISSIONS-------------------#
