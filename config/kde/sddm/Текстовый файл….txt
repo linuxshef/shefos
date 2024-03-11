@@ -1,0 +1,7 @@
+/usr/lib/sddm/sddm.conf.d/
+
+root:root
+
+
+
+/etc/sddm.conf.d/ - kde_settings

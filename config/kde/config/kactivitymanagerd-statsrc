@@ -1,0 +1,5 @@
+[Favorites-org.kde.plasma.kickoff.favorites.instance-3-36218cfd-d9cf-41fd-b6b0-fb390bb16814]
+ordering=preferred://browser,applications:systemsettings.desktop,applications:org.kde.dolphin.desktop,applications:org.manjaro.pamac.manager.desktop,applications:timeshift-gtk.desktop,applications:io.github.hakandundar34coding.system-monitoring-center.desktop,applications:org.kde.kcalc.desktop
+
+[Favorites-org.kde.plasma.kickoff.favorites.instance-3-global]
+ordering=preferred://browser,applications:systemsettings.desktop,applications:org.kde.dolphin.desktop,applications:org.manjaro.pamac.manager.desktop,applications:timeshift-gtk.desktop,applications:io.github.hakandundar34coding.system-monitoring-center.desktop,applications:org.kde.kcalc.desktop
