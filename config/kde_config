@@ -49,7 +49,7 @@ mv config/kde/konsole /mnt/home/$username/.local/share/
 mv config/kde/wallpaper/ShefOS_Owl_Dark.jpg /mnt/usr/share/wallpapers/
 mv config/kde/sddm/default.conf /mnt/usr/lib/sddm/sddm.conf.d/
 mv config/kde/sddm/kde_settings.conf /mnt/etc/sddm.conf.d/
-mv config/kde/sddm/plasmaX /mnt/usr/share/sddm/themes
+mv config/kde/sddm/plasmaX /mnt/usr/share/sddm/themes/
 mv config/kde/com.github.nekocwd.tensura-shuna /mnt/home/$username/.local/share/plasma/look-and-feel/
 
 #sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
