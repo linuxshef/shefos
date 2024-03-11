@@ -54,7 +54,7 @@ mv config/kde/sddm/kde_settings.conf /mnt/etc/sddm.conf.d/
 mv config/kde/sddm/plasmaX /mnt/usr/share/sddm/themes/
 mv config/kde/com.github.nekocwd.tensura-shuna /mnt/home/$username/.local/share/plasma/look-and-feel/
 mv config/kde/Monterey-dark /mnt/home/$username/.local/share/plasma/desktoptheme/
-mv config/kde/wallpaper/$username /mnt/var/lib/AccountsService/icons/
+mv config/kde/wallpaper/shefos /mnt/var/lib/AccountsService/icons/
 mv config/kde/sddm/sddm.conf /mnt/etc/
 mv config/kde/config/kfontinstuirc /mnt/home/$username/.config/
 mv config/kde/sweet/Sweet-Dark /mnt/home/$username/.local/share/aurorae/themes/
