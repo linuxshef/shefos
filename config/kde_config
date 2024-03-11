@@ -12,7 +12,6 @@ mkdir -p /mnt/var/lib/AccountsService/icons/
 
 su manjaro -c "mkdir -p /mnt/home/$username/.config/neofetch"
 su manjaro -c "mkdir -p /mnt/home/$username/.config/flameshot"
-su manjaro -c "mkdir -p /mnt/home/$username/.config/autostart"
 su manjaro -c "mkdir -p /mnt/home/$username/.local/share"
 su manjaro -c "mkdir -p /mnt/home/$username/.local/share/plasma/look-and-feel"
 su manjaro -c "mkdir -p /mnt/home/$username/.local/share/plasma/desktoptheme"
@@ -65,13 +64,14 @@ mv config/kde/sweet/Sweet.colors /mnt/home/$username/.local/share/color-schemes/
 mv config/kde/config/kwalletrc /mnt/home/$username/.config/
 mv config/kde/config/Trolltech.conf /mnt/home/$username/.config/
 mv config/LuxWine/lwicon.png /mnt/usr/share/icons/
-mv config/LuxWine/InstallLuxWine.desktop /mnt/home/$username/.config/autostart
+mv config/LuxWine/InstallLuxWine.desktop /mnt/home/$username/
 
 #sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
 #-----------PERMISSIONS-------------------#
 
 arch-chroot /mnt /bin/bash -c "chown -R $username:$username /home/$username/.config"
 arch-chroot /mnt /bin/bash -c "chown -R $username:$username /home/$username/.local"
+chmod +x /mnt/home/$username/InstallLuxWine.desktop
 
 rm -Rf /mnt/home/$username/grub-customizer-git
 rm -Rf /mnt/home/$username/lib32-gconf
