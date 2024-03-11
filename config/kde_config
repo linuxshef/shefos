@@ -5,6 +5,7 @@ rm -Rf /mnt/usr/lib/sddm/sddm.conf.d/default.conf
 rm -Rf /mnt/etc/sddm.conf.d/kde_settings.conf
 mkdir /mnt/usr/share/sddm/themes
 mkdir /mnt/usr/share/wallpapers
+mkdir /mnt/etc/sddm.conf.d
 #------------FOLDERS------------------------#
 
 su manjaro -c "mkdir -p /mnt/home/$username/.config/neofetch"
