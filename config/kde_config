@@ -12,6 +12,7 @@ su manjaro -c "mkdir -p /mnt/home/$username/.config/neofetch"
 su manjaro -c "mkdir -p /mnt/home/$username/.config/flameshot"
 su manjaro -c "mkdir -p /mnt/home/$username/.local/share"
 su manjaro -c "mkdir -p /mnt/home/$username/.local/share/plasma/look-and-feel"
+su manjaro -c "mkdir -p /mnt/home/$username/.local/share/plasma/desktoptheme"
 #su manjaro -c
 #su manjaro -c
 #su manjaro -c
@@ -51,6 +52,7 @@ mv config/kde/sddm/default.conf /mnt/usr/lib/sddm/sddm.conf.d/
 mv config/kde/sddm/kde_settings.conf /mnt/etc/sddm.conf.d/
 mv config/kde/sddm/plasmaX /mnt/usr/share/sddm/themes/
 mv config/kde/com.github.nekocwd.tensura-shuna /mnt/home/$username/.local/share/plasma/look-and-feel/
+mv config/kde/Monterey-dark /mnt/home/$username/.local/share/plasma/desktoptheme/
 
 #sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
 #-----------PERMISSIONS-------------------#
