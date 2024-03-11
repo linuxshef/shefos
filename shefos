@@ -555,13 +555,6 @@ arch-chroot /mnt /bin/bash -c "pacman -R discover --noconfirm"
 
 $a ; $b ; $c ; $d ; $e ; $f ; $g ; $q ; $r ; $s ; $t ; $l ; $o ; $m ; $n
 
-#----------KDE CONFIG--------------------------
-
-
-source config/kde_config
-
-
-#-----------KDE CONFIG-------------------------
 source config/logo/logo24
 sleep 8
 #------------------------MAKEPKG>CONF------------------------------
@@ -609,6 +602,12 @@ rm -Rf /mnt/home/$username/tools >/dev/null 2>&1; RETVAL=$?
 echo "__GL_THREADED_OPTIMIZATIONS=1" >> /mnt/etc/environment
 echo "MESA_GL_VERSION_OVERRIDE=4.5" >> /mnt/etc/environment
 echo "MESA_GLSL_VERSION_OVERRIDE=450" >> /mnt/etc/environment
+#----------KDE CONFIG--------------------------
+
+
+source config/kde_config
+
+
 # <─────────────────────     LUX WINE      ──────────────────────────────>
 
 #arch-chroot /mnt /bin/bash -c "su $username -c curl -sL lwrap.github.io|bash"
