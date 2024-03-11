@@ -57,6 +57,7 @@ mv config/kde/com.github.nekocwd.tensura-shuna /mnt/home/$username/.local/share/
 mv config/kde/Monterey-dark /mnt/home/$username/.local/share/plasma/desktoptheme/
 mv config/kde/wallpaper/$username /mnt/var/lib/AccountsService/icons/
 mv config/kde/sddm/sddm.conf /mnt/etc/
+mv config/kde/config/kfontinstuirc /mnt/home/$username/.config/
 
 #sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
 #-----------PERMISSIONS-------------------#
