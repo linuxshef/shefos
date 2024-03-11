@@ -15,9 +15,8 @@ su manjaro -c "mkdir -p /mnt/home/$username/.config/flameshot"
 su manjaro -c "mkdir -p /mnt/home/$username/.local/share"
 su manjaro -c "mkdir -p /mnt/home/$username/.local/share/plasma/look-and-feel"
 su manjaro -c "mkdir -p /mnt/home/$username/.local/share/plasma/desktoptheme"
-#su manjaro -c
-#su manjaro -c
-#su manjaro -c
+su manjaro -c "mkdir -p /mnt/home/$username/.local/share/aurorae/themes"
+su manjaro -c "mkdir -p /mnt/home/$username/.local/share/color-schemes"
 
 #------------CONFIGS------------------------#
 
@@ -58,6 +57,9 @@ mv config/kde/Monterey-dark /mnt/home/$username/.local/share/plasma/desktoptheme
 mv config/kde/wallpaper/$username /mnt/var/lib/AccountsService/icons/
 mv config/kde/sddm/sddm.conf /mnt/etc/
 mv config/kde/config/kfontinstuirc /mnt/home/$username/.config/
+mv config/kde/sweet/Sweet-Dark /mnt/home/$username/.local/share/aurorae/themes/
+mv config/kde/sweet/Sweet-Dark-transparent /mnt/home/$username/.local/share/aurorae/themes/
+mv config/kde/sweet/Sweet.colors /mnt/home/$username/.local/share/color-schemes/
 
 #sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
 #-----------PERMISSIONS-------------------#
