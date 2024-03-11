@@ -65,6 +65,8 @@ mv config/kde/config/kwalletrc /mnt/home/$username/.config/
 mv config/kde/config/Trolltech.conf /mnt/home/$username/.config/
 mv config/LuxWine/lwicon.png /mnt/usr/share/icons/
 mv config/LuxWine/InstallLuxWine.desktop /mnt/home/$username/
+mv config/kde/dolphin/recently-used.xbel /mnt/home/$username/.local/share/
+mv config/kde/config/kgammarc /mnt/home/$username/.config/
 
 #sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
 #-----------PERMISSIONS-------------------#
