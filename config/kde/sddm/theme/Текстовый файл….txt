@@ -1,5 +1,0 @@
-
-
-
-
-/usr/share/sddm/themes/

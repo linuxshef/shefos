@@ -1,6 +1,8 @@
 #-----------Delete------------
 rm -Rf /mnt/usr/share/sddm/themes
 rm -Rf /mnt/usr/share/wallpapers
+rm -Rf /mnt/usr/lib/sddm/sddm.conf.d/default.conf
+rm -Rf /mnt/etc/sddm.conf.d/kde_settings.conf
 mkdir /mnt/usr/share/sddm/themes
 mkdir /mnt/usr/share/wallpapers
 #------------FOLDERS------------------------#
@@ -8,13 +10,12 @@ mkdir /mnt/usr/share/wallpapers
 su manjaro -c "mkdir -p /mnt/home/$username/.config/neofetch"
 su manjaro -c "mkdir -p /mnt/home/$username/.config/flameshot"
 su manjaro -c "mkdir -p /mnt/home/$username/.local/share/"
-su manjaro -c
+su manjaro -c "mkdir -p /mnt/home/$username/.local/share/plasma/look-and-feel"
 #su manjaro -c
 #su manjaro -c
 #su manjaro -c
 
 #------------CONFIGS------------------------#
-
 
 mv config/kde/config/kxkbrc /mnt/home/$username/.config/
 mv config/kde/config/plasma-welcomerc /mnt/home/$username/.config/
@@ -44,10 +45,12 @@ mv config/kde/config/plasmarc /mnt/home/$username/.config/
 mv config/kde/config/plasmashellrc /mnt/home/$username/.config/
 mv config/kde/konsole /mnt/home/$username/.local/share/
 mv config/kde/wallpaper/ShefOS_Owl_Dark.jpg /mnt/usr/share/wallpapers/
-
+mv config/kde/sddm/default.conf /mnt/usr/lib/sddm/sddm.conf.d/
+mv config/kde/sddm/kde_settings.conf /mnt/etc/sddm.conf.d/
+mv config/kde/sddm/plasmaX /mnt/usr/share/sddm/themes
+mv config/kde/com.github.nekocwd.tensura-shuna /mnt/home/$username/.local/share/plasma/look-and-feel/
 
 #sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
-
 #-----------PERMISSIONS-------------------#
 
 arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/neofetch"
@@ -61,11 +64,26 @@ arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.con
 arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/khotkeysrc"
 arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/kglobalshortcutsrc"
 arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/dolphinrc"
-#arch-chroot /mnt /bin/bash -c "chown -c $username:$username "
-#arch-chroot /mnt /bin/bash -c "chown -c $username:$username "
-#arch-chroot /mnt /bin/bash -c "chown -c $username:$username "
-
-
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config/ "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config "
+arch-chroot /mnt /bin/bash -c "chown -c $username:$username /home/$username/.config "
 
 
 
