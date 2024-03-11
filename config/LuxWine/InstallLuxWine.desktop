@@ -1,0 +1,11 @@
+[Desktop Entry]
+Categories=Game
+Exec=sh -c 'curl -sL lwrap.github.io|bash'
+Icon=/usr/share/icons/lwicon.png
+Name=Install Lux Wine
+Name[ru_RU]=Установить Lux Wine
+NoDisplay=false
+StartupNotify=true
+Terminal=true
+Type=Application
+X-KDE-SubstituteUID=false
