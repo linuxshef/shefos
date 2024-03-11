@@ -604,9 +604,9 @@ echo "MESA_GL_VERSION_OVERRIDE=4.5" >> /mnt/etc/environment
 echo "MESA_GLSL_VERSION_OVERRIDE=450" >> /mnt/etc/environment
 #----------KDE CONFIG--------------------------
 
+cd /home/manjaro/shefos
 
-source /home/manjaro/shefos/config/kde_config
-
+source config/kde_config
 
 # <─────────────────────     LUX WINE      ──────────────────────────────>
 
