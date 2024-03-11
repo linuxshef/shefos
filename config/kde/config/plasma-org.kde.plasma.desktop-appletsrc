@@ -77,7 +77,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][2][Applets][7][Configuration]
-PreloadWeight=95
+PreloadWeight=100
 SystrayContainmentId=8
 
 [Containments][2][ConfigDialog]
@@ -103,7 +103,7 @@ immutability=1
 plugin=org.kde.plasma.devicenotifier
 
 [Containments][8][Applets][10][Configuration]
-PreloadWeight=65
+PreloadWeight=70
 
 [Containments][8][Applets][11]
 immutability=1
@@ -129,6 +129,9 @@ plugin=org.kde.plasma.keyboardlayout
 immutability=1
 plugin=org.kde.plasma.volume
 
+[Containments][8][Applets][16][Configuration]
+PreloadWeight=55
+
 [Containments][8][Applets][16][Configuration][General]
 migrated=true
 
@@ -144,12 +147,15 @@ plugin=org.kde.plasma.printmanager
 immutability=1
 plugin=org.kde.plasma.nightcolorcontrol
 
+[Containments][8][Applets][21][Configuration]
+PreloadWeight=34
+
 [Containments][8][Applets][22]
 immutability=1
 plugin=org.kde.plasma.battery
 
 [Containments][8][Applets][22][Configuration]
-PreloadWeight=55
+PreloadWeight=65
 
 [Containments][8][Applets][23]
 immutability=1

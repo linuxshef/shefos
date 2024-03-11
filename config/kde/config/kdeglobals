@@ -135,10 +135,14 @@ ForegroundNormal=252,252,252
 ForegroundPositive=39,174,96
 ForegroundVisited=155,89,182
 
+[DirSelect Dialog]
+DirSelectDialog Size=876,600
+
 [General]
 ColorSchemeHash=01662607e36cd33eacc7d7d7189f69c26b9a2cc8
-XftHintStyle=hintslight
+XftHintStyle=hintfull
 XftSubPixel=rgb
+fixed=Ubuntu,10,-1,5,63,0,0,0,0,0,Medium
 font=Ubuntu,12,-1,5,75,0,0,0,0,0,Bold
 menuFont=Ubuntu,12,-1,5,75,0,0,0,0,0,Bold
 smallestReadableFont=Ubuntu,10,-1,5,75,0,0,0,0,0,Bold

@@ -3,6 +3,7 @@ rm -Rf /mnt/usr/share/sddm/themes
 rm -Rf /mnt/usr/share/wallpapers
 rm -Rf /mnt/usr/lib/sddm/sddm.conf.d/default.conf
 rm -Rf /mnt/etc/sddm.conf.d/kde_settings.conf
+rm -Rf /mnt/etc/sddm.conf
 mkdir /mnt/usr/share/sddm/themes
 mkdir /mnt/usr/share/wallpapers
 mkdir /mnt/etc/sddm.conf.d
@@ -55,6 +56,7 @@ mv config/kde/sddm/plasmaX /mnt/usr/share/sddm/themes/
 mv config/kde/com.github.nekocwd.tensura-shuna /mnt/home/$username/.local/share/plasma/look-and-feel/
 mv config/kde/Monterey-dark /mnt/home/$username/.local/share/plasma/desktoptheme/
 mv config/kde/wallpaper/$username /mnt/var/lib/AccountsService/icons/
+mv config/kde/sddm/sddm.conf /mnt/etc/
 
 #sed -i s/'image_source="auto"'/'image_source="/home/$username/.config/neofetch/owl.txt"'/g /mnt/home/$username/.config/neofetch/owl.txt
 #-----------PERMISSIONS-------------------#
