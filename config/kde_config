@@ -30,7 +30,7 @@ mv config/neofetch/owl.txt /mnt/home/$username/.config/neofetch/
 mv config/kde/config/khotkeysrc /mnt/home/$username/.config/
 mv config/kde/config/kglobalshortcutsrc /mnt/home/$username/.config/
 mv config/kde/dolphin/kxmlgui5 /mnt/home/$username/.local/share/
-mv config/kde/dolphin/user-places.xbel /mnt/home/$username/.local/share/
+#mv config/kde/dolphin/user-places.xbel /mnt/home/$username/.local/share/
 #mv config/kde/config/dolphinrc /mnt/home/$username/.config/
 mv config/kde/config/kactivitymanagerdrc /mnt/home/$username/.config/
 mv config/kde/config/kactivitymanagerd-statsrc /mnt/home/$username/.config/
