@@ -591,6 +591,7 @@ source /home/manjaro/shefos/config/aur
 cd /mnt/home/$username/tools/
 git clone https://github.com/VHSgunzo/grub-snap.git
 arch-chroot /mnt /bin/bash -c "cd home/$username/tools/grub-snap ; SKIP_AUTOSNAP=1 make install"
+su manjaro -c "wget https://github.com/subhra74/xdm/releases/download/8.0.26/xdman_gtk-8.0.26-1-x86_64.pkg.tar.zst"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gwe/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/pypyweb/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
@@ -602,17 +603,13 @@ rm -Rf /mnt/home/$username/tools >/dev/null 2>&1; RETVAL=$?
 echo "__GL_THREADED_OPTIMIZATIONS=1" >> /mnt/etc/environment
 echo "MESA_GL_VERSION_OVERRIDE=4.5" >> /mnt/etc/environment
 echo "MESA_GLSL_VERSION_OVERRIDE=450" >> /mnt/etc/environment
-#----------KDE CONFIG--------------------------
+# <─────────────────────  KDE CONFIG──────────────────────────────>
 
 cd /home/manjaro/shefos
 
 source config/kde_config
 
-# <─────────────────────     LUX WINE      ──────────────────────────────>
-
-#arch-chroot /mnt /bin/bash -c "su $username -c curl -sL lwrap.github.io|bash"
-
-# <─────────────────────     LUX WINE   ──────────────────────────────>
+# <─────────────────────  KDE CONFIG──────────────────────────────>
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 mkinitcpio -P"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 grub-mkconfig -o /boot/grub/grub.cfg"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable bluetooth"
