@@ -5,6 +5,7 @@ _launch=none,none,Запустить 7 Days to Die
 [ActivityManager]
 _k_friendly_name=Диспетчер комнат
 switch-to-activity-11c99431-4734-4a57-a5e1-888c6c1ae049=none,none,Переключиться на комнату «Начальная комната»
+switch-to-activity-36218cfd-d9cf-41fd-b6b0-fb390bb16814=none,none,Переключиться на комнату «Начальная комната»
 
 [Burnout Paradise.desktop]
 _k_friendly_name=Burnout Paradise
@@ -74,11 +75,11 @@ mute=Volume Mute,Volume Mute,Выключить звук
 
 [ksmserver]
 Halt Without Confirmation=none,,Выключить компьютер без подтверждения
-Lock Session=Meta+L\tScreensaver,Meta+L\tScreensaver,Заблокировать сеанс
+Lock Session=Meta+L\tScreensaver,Meta+L\tScreensaver,Lock Session
 Log Out=Ctrl+Alt+Del,Ctrl+Alt+Del,Завершить сеанс
 Log Out Without Confirmation=none,,Завершить сеанс без подтверждения
 Reboot Without Confirmation=none,,Перезагрузить компьютер без подтверждения
-_k_friendly_name=Управление сеансами
+_k_friendly_name=Session Management
 
 [kwin]
 Activate Window Demanding Attention=Meta+Ctrl+A,Meta+Ctrl+A,Активировать окно\\, требующее внимания
@@ -179,10 +180,10 @@ Window One Desktop Down=Meta+Ctrl+Shift+Down,Meta+Ctrl+Shift+Down,Окно на 
 Window One Desktop Up=Meta+Ctrl+Shift+Up,Meta+Ctrl+Shift+Up,Окно на один рабочий стол вверх
 Window One Desktop to the Left=Meta+Ctrl+Shift+Left,Meta+Ctrl+Shift+Left,Окно на один рабочий стол влево
 Window One Desktop to the Right=Meta+Ctrl+Shift+Right,Meta+Ctrl+Shift+Right,Окно на один рабочий стол вправо
-Window One Screen Down=none,,Window One Screen Down
-Window One Screen Up=none,,Window One Screen Up
-Window One Screen to the Left=none,,Window One Screen to the Left
-Window One Screen to the Right=none,,Window One Screen to the Right
+Window One Screen Down=none,,Окно на один экран вниз
+Window One Screen Up=none,,Окно на один экран вверх
+Window One Screen to the Left=none,,Окно на один экран влево
+Window One Screen to the Right=none,,Окно на один экран вправо
 Window Operations Menu=Alt+F3,Alt+F3,Меню действий с окном
 Window Pack Down=none,,Переместить окно вниз
 Window Pack Left=none,,Переместить окно влево
@@ -303,7 +304,7 @@ Turn Off Screen=none,none,Выключить монитор
 _k_friendly_name=Управление питанием
 
 [plasmashell]
-_k_friendly_name=Plasma
+_k_friendly_name=Переключение комнат
 activate task manager entry 1=Meta+1,Meta+1,Открыть 1-ю кнопку на панели задач
 activate task manager entry 10=none,Meta+0,Открыть 10-ю кнопку на панели задач
 activate task manager entry 2=Meta+2,Meta+2,Открыть 2-ю кнопку на панели задач

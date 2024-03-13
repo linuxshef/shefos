@@ -7,6 +7,7 @@ RightButton;NoModifier=org.kde.contextmenu
 
 [Containments][1]
 ItemGeometries-1280x800=
+ItemGeometries-1600x900=
 ItemGeometries-1680x1050=
 ItemGeometriesHorizontal=
 activityId=36218cfd-d9cf-41fd-b6b0-fb390bb16814
@@ -56,8 +57,8 @@ plugin=org.kde.plasma.kickoff
 
 [Containments][2][Applets][3][Configuration]
 PreloadWeight=100
-popupHeight=564
-popupWidth=778
+popupHeight=576
+popupWidth=834
 
 [Containments][2][Applets][3][Configuration][General]
 favoritesPortedToKAstats=true
@@ -160,6 +161,9 @@ PreloadWeight=65
 [Containments][8][Applets][23]
 immutability=1
 plugin=org.kde.plasma.networkmanagement
+
+[Containments][8][Applets][23][Configuration]
+PreloadWeight=60
 
 [Containments][8][Applets][9]
 immutability=1
