@@ -617,7 +617,11 @@ cd /home/manjaro/shefos
 
 source config/kde_config
 
-# <─────────────────────  KDE CONFIG──────────────────────────────>
+# <─────────────────────  Neofetch──────────────────────────────>
+
+sed -i s/'image_source="auto"'/"image_source="/home/$username/.config/neofetch/owl.txt""/g /mnt/home/$username/.config/neofetch/config.conf
+
+# <─────────────────────  Neofetch──────────────────────────────>
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 mkinitcpio -P"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 grub-mkconfig -o /boot/grub/grub.cfg"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable bluetooth"
