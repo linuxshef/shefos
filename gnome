@@ -551,7 +551,7 @@ pacman -Sc --noconfirm
 
 source config/desktop_gnome
 
-arch-chroot /mnt /bin/bash -c "pacman -R gnome-software --noconfirm"
+#arch-chroot /mnt /bin/bash -c "pacman -R gnome-software --noconfirm"
 
 $a ; $b ; $c ; $d ; $e ; $f ; $g ; $q ; $r ; $s ; $t ; $l ; $o ; $m ; $n
 
