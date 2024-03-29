@@ -551,7 +551,7 @@ pacman -Sc --noconfirm
 
 source config/desktop_gnome
 
-arch-chroot /mnt /bin/bash -c "pacman -R discover --noconfirm"
+arch-chroot /mnt /bin/bash -c "pacman -R gnome-software --noconfirm"
 
 $a ; $b ; $c ; $d ; $e ; $f ; $g ; $q ; $r ; $s ; $t ; $l ; $o ; $m ; $n
 
@@ -610,12 +610,6 @@ arch-chroot /mnt /bin/bash -c "sysctl -w vm.swappiness=10"
 arch-chroot /mnt /bin/bash -c "touch /etc/sysctl.d/99-swappiness.conf"
 
 echo "vm.swappiness = 10" > /mnt/etc/sysctl.d/99-swappiness.conf
-
-# <─────────────────────  KDE CONFIG──────────────────────────────>
-
-cd /home/manjaro/shefos
-
-source config/kde_config
 
 # <─────────────────────  Neofetch──────────────────────────────>
 
