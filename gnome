@@ -12,7 +12,6 @@
 
 clear
 source config/logo/logo1
-systemctl enable --now systemd-timesyncd >/dev/null 2>&1; RETVAL=$?
 systemctl start systemd-resolved
 sed -i s/'#en_US.UTF-8'/'en_US.UTF-8'/g /etc/locale.gen
 sed -i s/'#ru_RU.UTF-8'/'ru_RU.UTF-8'/g /etc/locale.gen
@@ -26,7 +25,7 @@ chmod 644 /etc/vconsole.conf
 setfont cyr-sun16
 locale-gen >/dev/null 2>&1; RETVAL=$?
 systemctl restart dhcpcd
-dhcpcd >/dev/null
+dhcpcd >/dev/null 2>&1; RETVAL=$?
 clear
 source config/logo/logo2
 sleep 6
@@ -470,17 +469,25 @@ clear
 #                         Pacman                       #
 #                                                      #
 #----------------------------------------------------------------------|
+source config/logo/logo23
+sleep 4
+pacman -Syy
+pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+pacman-key --lsign-key 3056513887B78AEB
+pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
-sed -i s/'#ParallelDownloads = 5'/'ParallelDownloads = 5'/g /etc/pacman.conf
+sed -i s/'ParallelDownloads = 4'/'ParallelDownloads = 4'/g /etc/pacman.conf
 sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf
 sed -i s/'#Color'/'ILoveCandy'/g /etc/pacman.conf
 sed -i s/'CheckSpace'/'#CheckSpace'/g /etc/pacman.conf
-sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf
-source config/logo/logo23
-sleep 4
+sed -i s/'#IgnorePkg   ='/'IgnorePkg   = discover'/g /etc/pacman.conf
+sed -i 's/^#\[custom]/\[chaotic-aur\]/' /etc/pacman.conf
+sed -i "s/^#SigLevel = Optional TrustAll/Include = \/etc\/pacman.d\/chaotic-mirrorlist/" /etc/pacman.conf
+#----------------------------------------------------------------------------------------#
 pacman-mirrors --fasttrack
-pacman -Syy archlinux-keyring manjaro-keyring --noconfirm
-pacman -Sy arch-install-scripts --noconfirm
+pacman -Syy archlinux-keyring manjaro-keyring chaotic-keyring --noconfirm
+pacman -S arch-install-scripts --noconfirm
 source config/base_system
 fstabgen -U /mnt >> /mnt/etc/fstab
 arch-chroot /mnt /bin/bash -c "ln -sf /usr/share/zoneinfo/$region /etc/localtime"
@@ -491,23 +498,26 @@ arch-chroot /mnt /bin/bash -c "locale-gen"
 arch-chroot /mnt /bin/bash -c "echo 'LANG=ru_RU.UTF-8' > /etc/locale.conf"
 arch-chroot /mnt /bin/bash -c "echo 'KEYMAP=ru' > /etc/vconsole.conf"
 arch-chroot /mnt /bin/bash -c "echo 'FONT=cyr-sun16' >> /etc/vconsole.conf"
-arch-chroot /mnt /bin/bash -c "echo 'Manjaro' > /etc/hostname"
+arch-chroot /mnt /bin/bash -c "echo 'ShefOS' > /etc/hostname"
 arch-chroot /mnt /bin/bash -c "echo '127.0.0.1 localhost' > /etc/hosts"
 arch-chroot /mnt /bin/bash -c "echo '::1       localhost' >> /etc/hosts"
 arch-chroot /mnt /bin/bash -c "echo '127.0.0.1 Manjaro.localdomain Manjaro' >> /etc/hosts"
 #----------------------------PACMAN--------------------------------------------------------------
-arch-chroot /mnt /bin/bash -c "sed -i s/'#ParallelDownloads = 5'/'ParallelDownloads = 5'/g /etc/pacman.conf"
+arch-chroot /mnt /bin/bash -c "sed -i s/'ParallelDownloads = 4'/'ParallelDownloads = 5'/g /etc/pacman.conf"
 arch-chroot /mnt /bin/bash -c "sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf"
 arch-chroot /mnt /bin/bash -c "sed -i s/'#Color'/'ILoveCandy'/g /etc/pacman.conf"
 arch-chroot /mnt /bin/bash -c "sed -i s/'CheckSpace'/'#CheckSpace'/g /etc/pacman.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf"
 sed -i "/\[multilib\]/,/Include/"'s/^#//' /mnt/etc/pacman.conf
+arch-chroot /mnt /bin/bash -c "pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com"
+arch-chroot /mnt /bin/bash -c "pacman-key --lsign-key 3056513887B78AEB"
+arch-chroot /mnt /bin/bash -c "pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'"
+arch-chroot /mnt /bin/bash -c "pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'"
+sed -i 's/^#\[custom]/\[chaotic-aur\]/' /mnt/etc/pacman.conf
+sed -i "s/^#SigLevel = Optional TrustAll/Include = \/etc\/pacman.d\/chaotic-mirrorlist/" /mnt/etc/pacman.conf
 #-------------------------------------------------------------------------------------------------
 arch-chroot /mnt /bin/bash -c "sed -i s/'# %wheel ALL=(ALL:ALL) ALL'/'%wheel ALL=(ALL:ALL) ALL'/g /etc/sudoers"
 #----------------------------SUDOERS------------------------------------------------------------------
 echo "root:$userpassword" | arch-chroot /mnt chpasswd
-arch-chroot /mnt /bin/bash -c "mkinitcpio -P"
-arch-chroot /mnt /bin/bash -c "pacman -Syy grub grub-btrfs efibootmgr --noconfirm"
 arch-chroot /mnt /bin/bash -c "useradd -m -G wheel -s /bin/bash $username"
 echo "$username:$userpassword" | arch-chroot /mnt chpasswd
 arch-chroot /mnt /bin/bash -c "systemctl enable NetworkManager"
@@ -527,41 +537,41 @@ arch-chroot /mnt /bin/bash -c "sed -i s/'HOOKS=(base udev autodetect modconf kms
 rm /mnt/etc/makepkg.conf
 cp makepkg/makepkg.conf /mnt/etc/
 #-----------------------------------------------
-arch-chroot /mnt /bin/bash -c "mkinitcpio -P"
-arch-chroot /mnt /bin/bash -c "grub-mkconfig -o /boot/grub/grub.cfg"
 pacman -Sc --noconfirm
 pacman -Syy
-arch-chroot /mnt /bin/bash -c "pacman-mirrors --fasttrack"
-arch-chroot /mnt /bin/bash -c "pacman -Syyuu --noconfirm"
+rm -Rf /mnt/etc/pacman.d/mirrorlist
+cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
+arch-chroot /mnt /bin/bash -c "pacman -Syyuu archlinux-keyring manjaro-keyring chaotic-keyring --noconfirm"
 #-----------------------------------------------------
 arch-chroot /mnt /bin/bash -c "${nvidia_driver}"
 arch-chroot /mnt /bin/bash -c "${hwddriver}"
 ${graphc_drivers}
 #------------------------------
 pacman -Sc --noconfirm
-pacman -Syy
+
 source config/desktop_gnome
+
+arch-chroot /mnt /bin/bash -c "pacman -R discover --noconfirm"
 
 $a ; $b ; $c ; $d ; $e ; $f ; $g ; $q ; $r ; $s ; $t ; $l ; $o ; $m ; $n
 
-su manjaro -c "mkdir -p /mnt/home/$username/.config/neofetch"
-mv config/neofetch/config.conf /mnt/home/$username/.config/neofetch/
-#------------------------------------
-clear
 source config/logo/logo24
 sleep 8
 #------------------------MAKEPKG>CONF------------------------------
 rm /etc/makepkg.conf
 cp makepkg/makepkg.conf /etc/
 # <────────────────────────────────────────────────────────────────────>
-pacman -Sc --noconfirm
-pacman -Syy
+
 source config/aur_dependencies
-pacman -Sc --noconfirm
-pacman -Syy
-# <────────────────────────────────────────────────────────────────────>
+
 source config/path/aur_patch
+
+pacman -Sc --noconfirm
+
+pacman -Syy
+
 source /home/manjaro/shefos/config/aur
+
 # <────────────────────────────────────────────────────────────────────>
 #
 #        ADVANCED PKG
@@ -581,47 +591,42 @@ source /home/manjaro/shefos/config/aur
 cd /mnt/home/$username/tools/
 git clone https://github.com/VHSgunzo/grub-snap.git
 arch-chroot /mnt /bin/bash -c "cd home/$username/tools/grub-snap ; SKIP_AUTOSNAP=1 make install"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/*.tar.zst --noconfirm"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gwe/*.tar.zst --noconfirm"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/pypyweb/*.tar.zst --noconfirm"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gc/*.tar.zst --noconfirm"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -S $CTRL --noconfirm"
-arch-chroot /mnt /bin/bash -c "rm -Rf home/$username/tools"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 fc-cache --force"
+arch-chroot /mnt /bin/bash -c "cd home/$username/tools/apps/ ; wget https://github.com/subhra74/xdm/releases/download/8.0.26/xdman_gtk-8.0.26-1-x86_64.pkg.tar.zst"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gwe/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/pypyweb/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gc/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -S $CTRL --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 fc-cache --force >/dev/null 2>&1; RETVAL=$?"
+rm -Rf /mnt/home/$username/tools >/dev/null 2>&1; RETVAL=$?
 # <─────────────────────     OpenGL      ──────────────────────────────>
 echo "__GL_THREADED_OPTIMIZATIONS=1" >> /mnt/etc/environment
 echo "MESA_GL_VERSION_OVERRIDE=4.5" >> /mnt/etc/environment
 echo "MESA_GLSL_VERSION_OVERRIDE=450" >> /mnt/etc/environment
-# <─────────────────────      SYSTEMD  ────────────────────────────────>
-arch-chroot /mnt /bin/bash -c "sed -i s/'#SystemMaxUse='/'SystemMaxUse=1'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#SystemMaxFileSize='/'SystemMaxFileSize=1'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#SystemMaxFiles=100'/'SystemMaxFiles=1'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#RuntimeMaxUse='/'RuntimeMaxUse=1'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#RuntimeMaxFileSize='/'RuntimeMaxFileSize=1'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#RuntimeMaxFiles=100'/'RuntimeMaxFiles=1'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#ForwardToSyslog=no'/'ForwardToSyslog=no'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "sed -i s/'#ForwardToWall=yes'/'ForwardToWall=yes'/g /etc/systemd/journald.conf"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 journalctl --vacuum-size=1M"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 journalctl --verify"
-# <─────────────────────     SYSTEMD      ─────────────────────────────>
+# <─────────────────────  SWAPPINES ──────────────────────────────>
 
-# .local/share/plasma/
+arch-chroot /mnt /bin/bash -c "sysctl -w vm.swappiness=10"
 
+arch-chroot /mnt /bin/bash -c "touch /etc/sysctl.d/99-swappiness.conf"
 
+echo "vm.swappiness = 10" > /mnt/etc/sysctl.d/99-swappiness.conf
 
+# <─────────────────────  KDE CONFIG──────────────────────────────>
 
+cd /home/manjaro/shefos
 
+source config/kde_config
 
+# <─────────────────────  Neofetch──────────────────────────────>
 
+sed -i s/'image_source="auto"'/"image_source="/home/$username/.config/neofetch/owl.txt""/g /mnt/home/$username/.config/neofetch/config.conf
 
-
-
-
-#<───────────────────── KDE PLasma  ─────────────────────────────>
+# <─────────────────────  Neofetch──────────────────────────────>
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 mkinitcpio -P"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 grub-mkconfig -o /boot/grub/grub.cfg"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable bluetooth"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable cups"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable cronie"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable libvirtd"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable systemd-timesyncd"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable systemd-resolved"
@@ -638,7 +643,7 @@ arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 ${optimus}"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable --now dbus-broker.service"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 timeshift --check"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable NetworkManager"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable gdm --force"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable sddm --force"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --permanent --zone=public --add-service=kdeconnect"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --reload"
 #----------------------------------------------------------------------|
