@@ -637,7 +637,7 @@ arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 ${optimus}"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable --now dbus-broker.service"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 timeshift --check"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable NetworkManager"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable sddm --force"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable gdm --force"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --permanent --zone=public --add-service=kdeconnect"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --reload"
 #----------------------------------------------------------------------|
