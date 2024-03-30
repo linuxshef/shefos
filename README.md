@@ -13,7 +13,7 @@ sudo su
 ```
 3)
 ```bash
-git clone https://github.com/linuxshef/shefos.git ; cd shefos ; chmod +x shefos ; ./shefos
+git clone https://github.com/linuxshef/shefos.git ; cd shefos ; ./shefos
 ```
 -------------------------------
 
@@ -29,7 +29,7 @@ sudo su
 ```
 3)
 ```bash
-git clone https://github.com/linuxshef/shefos.git ; cd shefos ; chmod +x shefos ; ./gnome
+git clone https://github.com/linuxshef/shefos.git ; cd shefos ; ./gnome
 ```
 
 -------------------------------
