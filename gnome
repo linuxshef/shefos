@@ -611,7 +611,12 @@ echo "vm.swappiness = 10" > /mnt/etc/sysctl.d/99-swappiness.conf
 
 # <─────────────────────  Neofetch──────────────────────────────>
 
-sed -i s/'image_source="auto"'/"image_source="/home/$username/.config/neofetch/owl.txt""/g /mnt/home/$username/.config/neofetch/config.conf
+cd /home/manjaro/shefos
+su manjaro -c "mkdir -p /mnt/home/$username/.config/neofetch"
+su manjaro -c "mkdir -p /mnt/home/$username/.config/flameshot"
+mv config/kde/config/flameshot.ini /mnt/home/$username/.config/flameshot
+mv config/neofetch/config.conf /mnt/home/$username/.config/neofetch/
+arch-chroot /mnt /bin/bash -c "chown -R $username:$username /home/$username/.config"
 
 # <─────────────────────  Neofetch──────────────────────────────>
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 mkinitcpio -P"
