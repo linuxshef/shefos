@@ -11,4 +11,4 @@
 
 
 
-basestrap -i /mnt base base-devel linux68 linux68-acpi_call linux68-headers linux-firmware dosfstools btrfs-progs intel-ucode amd-ucode iucode-tool archlinux-keyring manjaro-keyring cups bluez bluez-utils manjaro-tools-base networkmanager dhcpcd dhclient vim nano pipewire pipewire-alsa pipewire-jack wireplumber libwireplumber manjaro-pipewire zsh zsh-completions mhwd mhwd-db python-gobject ccache clang ninja meson make cmake libtool gcc gcc-libs glibc lib32-glibc grub grub-btrfs efibootmgr --noconfirm
+basestrap -i /mnt base base-devel linux69 linux69-acpi_call linux69-headers linux-firmware dosfstools btrfs-progs intel-ucode amd-ucode iucode-tool archlinux-keyring manjaro-keyring cups bluez bluez-utils manjaro-tools-base networkmanager dhcpcd dhclient vim nano pipewire pipewire-alsa pipewire-jack wireplumber libwireplumber manjaro-pipewire zsh zsh-completions mhwd mhwd-db python-gobject ccache clang ninja meson make cmake libtool gcc gcc-libs glibc lib32-glibc grub grub-btrfs efibootmgr --noconfirm
