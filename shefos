@@ -72,7 +72,7 @@ sleep 2
 read -t 99999 -n 1 -s -r -p "
                                                           -> Нажмите Enter для продолжения <- "
 clear
-fdisk -l
+lsblk -f
 
 sleep 2
 read -t 99999 -n 1 -s -r -p "
