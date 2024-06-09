@@ -8,7 +8,7 @@ sed -i "s/Include = \/etc\/pacman.d\/chaotic-mirrorlist/#Include = \/etc\/pacman
 
 #------------------------------
 
-SKIP_AUTOSNAP=1 basestrap -i /mnt gnome gnome-calculator gdm --noconfirm
+SKIP_AUTOSNAP=1 basestrap -i /mnt gnome gnome-calculator gdm  gnome-terminal gnome-tweaks qt5ct qt6ct breeze-gtk breeze breeze-icons breeze5  --noconfirm
 
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -R gnome-software --noconfirm"
 
