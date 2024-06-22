@@ -549,9 +549,7 @@ ${graphc_drivers}
 #------------------------------
 pacman -Sc --noconfirm
 
-source config/desktop_base
-
-arch-chroot /mnt /bin/bash -c "pacman -R discover --noconfirm"
+source config/desktop_gnome
 
 $a ; $b ; $c ; $d ; $e ; $f ; $g ; $q ; $r ; $s ; $t ; $l ; $o ; $m ; $n
 
@@ -611,15 +609,14 @@ arch-chroot /mnt /bin/bash -c "touch /etc/sysctl.d/99-swappiness.conf"
 
 echo "vm.swappiness = 10" > /mnt/etc/sysctl.d/99-swappiness.conf
 
-# <─────────────────────  KDE CONFIG──────────────────────────────>
-
-cd /home/manjaro/shefos
-
-source config/kde_config
-
 # <─────────────────────  Neofetch──────────────────────────────>
 
-sed -i s/'image_source="auto"'/"image_source="/home/$username/.config/neofetch/owl.txt""/g /mnt/home/$username/.config/neofetch/config.conf
+cd /home/manjaro/shefos
+su manjaro -c "mkdir -p /mnt/home/$username/.config/neofetch"
+su manjaro -c "mkdir -p /mnt/home/$username/.config/flameshot"
+mv config/kde/config/flameshot.ini /mnt/home/$username/.config/flameshot
+mv config/neofetch/config.conf /mnt/home/$username/.config/neofetch/
+arch-chroot /mnt /bin/bash -c "chown -R $username:$username /home/$username/.config"
 
 # <─────────────────────  Neofetch──────────────────────────────>
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 mkinitcpio -P"
@@ -643,7 +640,7 @@ arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 ${optimus}"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable --now dbus-broker.service"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 timeshift --check"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable NetworkManager"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable sddm --force"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable gdm --force"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --permanent --zone=public --add-service=kdeconnect"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --reload"
 #----------------------------------------------------------------------|
