@@ -10,7 +10,7 @@ sed -i "s/Include = \/etc\/pacman.d\/chaotic-mirrorlist/#Include = \/etc\/pacman
 
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pamac install gnome gnome-calculator gdm gnome-terminal-fedora vte3-notification gnome-tweaks qt5ct qt6ct breeze-gtk breeze breeze-icons breeze5 nemo cinnamon-translations --noconfirm"
 arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -R gnome-software --noconfirm"
-arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -R nautilus --noconfirm"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -R nautilus --no-confirm"
 
 #------------ Chaotic ON ------------------
 
