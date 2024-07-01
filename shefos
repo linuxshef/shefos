@@ -550,6 +550,9 @@ ${graphc_drivers}
 pacman -Sc --noconfirm
 
 source config/desktop_gnome
+su manjaro -c "mkdir -p /mnt/home/$username/.local/share"
+cp -r config/gnome-shell /mnt/home/$username/.local/share
+arch-chroot /mnt /bin/bash -c "chown -R $username:$username /home/$username/.local"
 
 $a ; $b ; $c ; $d ; $e ; $f ; $g ; $q ; $r ; $s ; $t ; $l ; $o ; $m ; $n
 
