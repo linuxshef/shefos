@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<application-state>
+  <context id="">
+    <application id="org.gnome.TextEditor.desktop" score="2" last-seen="1719249209"/>
+    <application id="xdm-app.desktop" score="82" last-seen="1719511048"/>
+    <application id="nemo.desktop" score="904" last-seen="1719668959"/>
+    <application id="com.mattjakeman.ExtensionManager.desktop" score="9" last-seen="1719669538"/>
+    <application id="firefox.desktop" score="17182" last-seen="1719669255"/>
+    <application id="org.gnome.tweaks.desktop" score="9" last-seen="1719666904"/>
+    <application id="chromium.desktop" score="1477" last-seen="1719657926"/>
+    <application id="vesktop.desktop" score="1436" last-seen="1719667461"/>
+    <application id="org.kde.kwrite.desktop" score="1403" last-seen="1719669535"/>
+    <application id="steam.desktop" score="168" last-seen="1719337967"/>
+    <application id="org.gnome.Terminal.Preferences.desktop" score="66" last-seen="1719506776"/>
+    <application id="code.desktop" score="0" last-seen="1719511007"/>
+    <application id="org.manjaro.pamac.manager.desktop" score="503" last-seen="1719669431"/>
+    <application id="ca.desrt.dconf-editor.desktop" score="37" last-seen="1719504480"/>
+    <application id="org.gtk.WidgetFactory4.desktop" score="8" last-seen="1719504025"/>
+    <application id="org.kde.konsole.desktop" score="6" last-seen="1719504322"/>
+    <application id="org.gnome.Settings.desktop" score="215" last-seen="1719666866"/>
+    <application id="org.kde.gwenview.desktop" score="33" last-seen="1719667250"/>
+    <application id="org.xfce.mousepad.desktop" score="0" last-seen="1719065888"/>
+    <application id="pamac-installer.desktop" score="3" last-seen="1719067023"/>
+    <application id="org.gnome.Calculator.desktop" score="6" last-seen="1719252441"/>
+    <application id="org.kde.kdenlive.desktop" score="3423" last-seen="1718947337"/>
+    <application id="totem.desktop" score="515" last-seen="1719331960"/>
+    <application id="org.gnome.Terminal.desktop" score="1543" last-seen="1719669514"/>
+    <application id="hardinfo2.desktop" score="14" last-seen="1719336462"/>
+    <application id="org.gnome.Shell.Extensions.desktop" score="18" last-seen="1719657904"/>
+    <application id="org.kde.dolphin.desktop" score="68" last-seen="1719330934"/>
+    <application id="org.gnome.Boxes.desktop" score="1689" last-seen="1719669507"/>
+    <application id="io.github.hakandundar34coding.system-monitoring-center.desktop" score="80" last-seen="1719597458"/>
+    <application id="com.obsproject.Studio.desktop" score="22" last-seen="1719506291"/>
+    <application id="org.kde.kate.desktop" score="0" last-seen="1719059951"/>
+    <application id="yelp.desktop" score="1" last-seen="1719063523"/>
+    <application id="org.telegram.desktop.desktop" score="8872" last-seen="1719667205"/>
+    <application id="Waydroid.desktop" score="5" last-seen="1719177609"/>
+    <application id="pcmanfm.desktop" score="39" last-seen="1719252566"/>
+    <application id="org.gnome.baobab.desktop" score="2" last-seen="1719065116"/>
+    <application id="org.pulseaudio.pavucontrol.desktop" score="23" last-seen="1719594234"/>
+  </context>
+</application-state>
