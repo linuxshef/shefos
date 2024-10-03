@@ -4,7 +4,6 @@ basestrap -i /mnt xorg xorg-xrandr xorg-server xdg-utils xorg-xinit xdg-user-dir
 #----------- Chaotic OFF -------------------
 sed -i 's/\[chaotic-aur]/#\[chaotic-aur\]/' /etc/pacman.conf
 sed -i "s/Include = \/etc\/pacman.d\/chaotic-mirrorlist/#Include = \/etc\/pacman.d\/chaotic-mirrorlist/" /etc/pacman.conf
-echo "IgnorePkg   = soil" >> /etc/pacman.conf
 pacman -Syy
 #------------------------------
 SKIP_AUTOSNAP=1 basestrap -i /mnt install gnome gnome-calculator gdm gnome-terminal-fedora vte3-notification gnome-tweaks qt5ct qt6ct breeze-gtk breeze breeze-icons breeze5 nemo cinnamon-translations gnome-shell-extension-appindicator gnome-shell-extension-arc-menu gnome-shell-extension-custom-accent-colors gnome-shell-extension-dash-to-dock gnome-shell-extension-dash-to-panel gnome-shell-extension-forge gnome-shell-extension-gnome-ui-tune gnome-shell-extension-gsconnect gnome-shell-extension-legacy-theme-auto-switcher gnome-shell-extension-space-bar gnome-shell-extension-x11gestures --noconfirm
