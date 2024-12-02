@@ -1,0 +1,646 @@
+#!/bin/bash
+#────────────────────────────────
+#  Version  : Shef OS Installer v.3.0.1
+#           :
+#  Author   : LinuxShef
+#           :
+#  Project  : https://github.com/linuxshef/shefos.git
+#           :
+#  License  : LGPL-3.0 (http://opensource.org/licenses/lgpl-3.0.html)
+#           :
+#────────────────────────────────
+
+clear
+source config/logo/logo1
+systemctl start systemd-resolved
+sed -i s/'#en_US.UTF-8'/'en_US.UTF-8'/g /etc/locale.gen
+sed -i s/'#ru_RU.UTF-8'/'ru_RU.UTF-8'/g /etc/locale.gen
+chmod 777 /etc/locale.conf
+chmod 777 /etc/vconsole.conf
+echo 'LANG=ru_RU.UTF-8' > /etc/locale.conf
+echo 'KEYMAP=ru' > /etc/vconsole.conf
+echo 'FONT=cyr-sun16' >> /etc/vconsole.conf
+chmod 644 /etc/locale.conf
+chmod 644 /etc/vconsole.conf
+setfont cyr-sun16
+locale-gen >/dev/null 2>&1; RETVAL=$?
+systemctl restart dhcpcd
+dhcpcd >/dev/null 2>&1; RETVAL=$?
+clear
+source config/logo/logo2
+sleep 6
+clear
+source config/logo/logo3
+    echo -e "
+      \t                                                 -> Пропустить введите     1    "
+
+    echo -e "
+
+      \t                                                 -> Разметить диск введите   2     "
+
+    echo -n "
+
+                                                         -> Введите значение : "
+
+      read main_menu
+      case "$main_menu" in
+         "1" ) clear
+           ;;
+         "2" ) clear ; source config/logo/logo4
+
+lsblk -d -p -n -l -o NAME,SIZE -e 7,11
+
+
+sleep 2
+read -t 99999 -n 1 -s -r -p "
+
+                                                      -> Нажмите Enter для продолжения <- "
+clear
+source config/logo/logo5
+read -p "
+                                                  -> Введите значение : " namedisk
+cfdisk --zero /dev/$namedisk
+      esac
+clear
+source config/logo/logo6
+read -p "
+                                                    -> Введите значение : " region
+
+clear
+source config/logo/logo7
+sleep 2
+read -t 99999 -n 1 -s -r -p "
+                                                          -> Нажмите Enter для продолжения <- "
+clear
+lsblk -f
+
+sleep 2
+read -t 99999 -n 1 -s -r -p "
+                                                          -> Нажмите Enter для продолжения <- "
+
+clear
+source config/logo/logo8
+read -p "
+                                                       -> Введите значение : " disk
+clear
+source config/logo/logo9
+  echo -e "
+
+      \t                                                -> SSD - Nvme - m2 - usb_flash  (   1   )  "
+
+    echo -e "
+
+      \t                                                    ->       HDD        (   2   )  "
+
+    echo -n "
+
+                                                           -> Введите значение : "
+      read main_menu
+      case "$main_menu" in
+         "1" ) clear ;
+         sub='rw,noatime,compress=zstd:2,ssd,space_cache=v2,discard=async,subvol'
+           ;;
+         "2" ) clear ;
+         sub='rw,relatime,space_cache=v2,autodefrag,nodatacow,subvol'
+      esac
+
+clear
+source config/logo/logo10
+read -p "
+                                                                  -> Boot: " boot
+read -p "
+                                                                  -> Root: " root
+read -p "
+                                                                  -> Swap: " swap
+read -p "
+                                                                  -> Home: " home
+clear
+source config/logo/logo11
+echo -e "\t
+
+                                                      -> Для UEFI введите     1    "
+echo -e "\t
+
+                                                      -> Не форматировать  введите      2
+
+                                                      ( Для утсановки в один раздел DOS/MBR или рядом с Windows )"
+echo -e "\t
+
+                                                      -> Для обычного Bios форматировать в Ext4 введите    3   "
+echo -e "\t
+
+                                                      -> Для обычного Bios фоматировать в Ext2 введиет    4   "
+echo -n "
+
+                                                          -> Введите значение : "
+read main_menu
+      case "$main_menu" in
+         "1" ) clear ; mkfs.vfat -F32 /dev/$boot
+         ;;
+         "3" ) clear ; mkfs.ext4 /dev/$boot
+         ;;
+         "4" ) clear ; mkfs.ext2 /dev/$boot
+         ;;
+         "2" ) clear
+      esac
+
+
+clear
+
+mkfs.btrfs -f /dev/$root
+
+mkswap /dev/$swap
+
+swapon /dev/$swap
+
+clear
+source config/logo/logo12
+
+echo -e "\t
+
+
+                                                             ->  Монтировать БЕЗ Home  (  1  )  "
+
+echo -e "\t
+
+                                                             -> Примонтировать Home раздел    (  2  )  "
+echo -e "\t
+
+
+                                                              -> Форматировать Home в Btrfs (  3  )
+
+                                                                   И примонтировать      "
+
+echo -n "
+
+                                                                 -> Введите значение : "
+
+read main_menu
+      case "$main_menu" in
+        "1") clear ; source config/btrfs/btrfs_no_home
+        ;;
+        "2") clear ; source config/btrfs/btrfs_home
+        ;;
+        "3") clear ; source config/btrfs/btrfs_format_home
+     esac
+
+clear
+source config/logo/logo13
+echo -e "\t
+                                                         -> Для UEFI или EFI введите  (  1  )  "
+echo -e "\t
+
+                                                         -> Для обычного Bios введите  (  2  )  "
+
+echo -e "\t
+                                                         -> Без boot раздела DOS/MBR   (  3  )
+
+                                                         (Если вы устанавливаете все в один радел для  MBR ) "
+echo -e "\t
+
+                                                         -> Установка grub-i386
+                                                    Если возникают проблемы с установкой загрузчика UEFI (  4  )  "
+
+echo -n "
+                                                           -> Введите значение : "
+read main_menu
+      case "$main_menu" in
+         "1" )
+         mkdir /mnt/boot/efi ; mount /dev/$boot /mnt/boot/efi
+         Uefi="grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=ShefOS --no-nvram --removable /dev/$disk ; grub-install /dev/$disk"
+         ;;
+         "2" )
+         mount /dev/$boot  /mnt/boot/
+         BIOS="grub-install /dev/$disk"
+         ;;
+         "3" )
+         clear
+         BBOOT="grub-install /dev/$disk"
+         ;;
+         "4" )
+         mkdir /mnt/boot/efi ; mount /dev/$boot /mnt/boot/efi
+         IGRUB="grub-install --target=i386-pc /dev/$disk"
+      esac
+
+clear
+source config/logo/logo14
+read -p "
+                                                   -> Введите имя учетной записи :  " username
+clear
+source config/logo/logo15
+read -p "
+                                                   -> Введите пароль пользователя :  " userpassword
+clear
+source config/logo/logo16
+
+echo -e "\t
+                                                           -> Для графики Intel введите ( 1 ) "
+echo -e "\t
+
+
+                                                           -> Для графики AMD введите   ( 2 )  "
+
+echo -e "\t
+
+                                                           -> Для графики NVIDIA введите ( 3 ) "
+
+echo -e "\t
+
+                                                           -> Ручная установка драйвера Nvidia ( 4 ) "
+
+echo -e "\t
+
+                                                          -> Для установки драйвера гибридной графики
+                                                            Например INTEL + NVIDIA , AMD + NVIDIA и т.д  ( 5 ) "
+echo -n "
+
+                                                            -> Введите значение : "
+read main_menu
+      case "$main_menu" in
+         "1" ) source config/drivers/intel
+        ;;
+         "2" ) source config/drivers/amd
+        ;;
+         "3" )
+clear
+source config/logo/logo17
+echo -e "\t
+
+
+                                                      ->  Установить проприетарный драйвер     1     "
+echo -e "\t
+
+
+                                                       ->  Установить Open source драйвер      2    "
+echo -n "
+
+                                                          -> Введите значение : "
+read main_menu
+      case "$main_menu" in
+       "1" ) source config/drivers/nvidia/nonfree
+       ;;
+       "2" ) source config/drivers/nvidia/free
+     esac
+        ;;
+        "4" )
+clear
+source config/logo/logo18
+echo -e "\t
+
+                                                             ->   Продолжить    1     "
+
+echo -n "
+
+                                                             -> Введите значение : "
+read main_menu
+      case "$main_menu" in
+         "1" )
+         clear ; mhwd --list
+         read -p "
+                                                           -> Введите значение : " namedriver
+
+         hwddriver='mhwd -i pci $namedriver'
+      esac
+
+        ;;
+        "5" )
+clear
+source config/logo/logo19
+echo -e "\t
+
+                                                       ->  INTEL + AMD      1     "
+
+echo -e "\t
+                                                       ->  INTEL + NVIDIA ( Проприетарный драйвер  Nvidia )     2    "
+echo -e "\t
+
+                                                       ->  INTEL + NVIDIA ( Open source драйвер Nvidia )     3    "
+
+echo -e "\t
+                                                       ->  AMD + NVIDA   ( Проприетарный драйвер  Nvidia )    4    "
+
+echo -e "\t
+                                                       ->  AMD + NVIDA   ( Open source драйвер Nvidia )    5    "
+echo -n "
+
+                                                        -> Введите значение : "
+read main_menu
+      case "$main_menu" in
+       "1" ) source config/drivers/hybrid/intel_amd
+       ;;
+       "2" ) source config/drivers/hybrid/intel_nvidia_nonfree
+       ;;
+       "3" ) source config/drivers/hybrid/intel_nvidia_free
+       ;;
+       "4" ) source config/drivers/hybrid/amd_nvidia_nonfree
+       ;;
+       "5" ) source config/drivers/hybrid/amd_nvidia_free
+      esac
+
+      esac
+clear
+
+source config/logo/logo20
+echo -e "\t
+                                                      ->  Установить Gwe  Nvidia  (  1  )  "
+
+echo -e "\t
+                                                      ->  Установить CoreCtrl  AMD (  2  )  "
+
+echo -e "\t
+                                                      ->  Установить Intel-power-control Intel  (  3  )  "
+echo -e "\t
+
+                                                      ->  Включить  ibt=off   (  4  )  "
+echo -e "\t
+
+                                                      ->  Включить Cpupower   (  5  )  "
+echo -e "\t
+
+                                                      ->  Посмотреть дополнительные варианты (  6  ) "
+
+echo -n "
+
+                                                                -> Введите значение : "
+read main_menu
+      case "$main_menu" in
+      "1" ) GWE=gwe ; PI=python-injector ; PP=python-py3nvml
+       ;;
+      "2" ) CTRL=corectrl
+       ;;
+      "3" ) IPC=intel-power-control-git
+       ;;
+      "4" ) a='source /home/manjaro/shefos/config/Choice/A'
+       ;;
+      "5" ) b='source /home/manjaro/shefos/config/Choice/B'
+       ;;
+      "6" )
+clear
+source config/logo/logo21
+echo -e "\t
+                                                        ->  Gwe  +  ibt=off   (  7  )  "
+
+echo -e "\t
+                                                        ->  Gwe  +  ibt=off  +  Cpupower  (  8  ) "
+
+echo -e "\t
+                                                        ->  ibt=off  +  Cpupower  (  9  )"
+
+echo -e "\t
+                                                        ->  intel-power-control +  Cpupower  (  10  )"
+
+echo -e "\t
+                                                        ->  intel-power-control + GWE   (  11  )"
+
+echo -e "\t
+                                                        ->  intel-power-control + GWE + Cpupower   (  12  )"
+
+echo -e "\t
+                                                        ->  Посмотреть ещё дополнительные варианты  (  13  )"
+
+echo -n "
+
+                                                        -> Введите значение : "
+read main_menu
+      case "$main_menu" in
+      "7" ) c='source /home/manjaro/shefos/config/Choice/C'
+       ;;
+      "8" ) d='source /home/manjaro/shefos/config/Choice/D'
+       ;;
+      "9" ) e='source /home/manjaro/shefos/config/Choice/E'
+       ;;
+     "10" ) f='source /home/manjaro/shefos/config/Choice/F'
+       ;;
+     "11" ) g='source /home/manjaro/shefos/config/Choice/G'
+      ;;
+     "12" ) q='source /home/manjaro/shefos/config/Choice/Q'
+      ;;
+     "13" )
+clear
+source config/logo/logo22
+echo -e "\t
+                                                        ->  Corectrl + Cpupower  (  14  )  "
+
+echo -e "\t
+                                                        ->  Corectrl + GWE  (  15  ) "
+
+echo -e "\t
+                                                        ->  Corectrl + GWE + Cpupower   (  16  )"
+
+echo -e "\t
+                                                        ->  Corectrl + ibt=off  (  17  )"
+
+echo -e "\t
+                                                        ->  Corectrl + ibt=off + Cpupower   (  18  )"
+
+echo -e "\t
+                                                        ->   Corectrl + ibt=off + Cpupower + GWE  (  19  )"
+
+echo -e "\t
+                                                        ->  Corectrl + ibt=off + GWE (  20  )"
+
+echo -n "
+
+                                                        -> Введите значение : "
+read main_menu
+      case "$main_menu" in
+      "14" ) r='source /home/manjaro/shefos/config/Choice/R'
+       ;;
+      "15" ) s='source /home/manjaro/shefos/config/Choice/S'
+       ;;
+      "16" ) t='source /home/manjaro/shefos/config/Choice/T'
+       ;;
+      "17" ) l='source /home/manjaro/shefos/config/Choice/L'
+       ;;
+      "18" ) o='source /home/manjaro/shefos/config/Choice/O'
+       ;;
+      "19" ) m='source /home/manjaro/shefos/config/Choice/M'
+       ;;
+      "20" ) n='source /home/manjaro/shefos/config/Choice/N'
+      esac
+
+      esac
+
+      esac
+
+clear
+#----------------------------------------------------------------------|
+#                                                      #
+#                         Pacman                       #
+#                                                      #
+#----------------------------------------------------------------------|
+source config/logo/logo23
+sleep 4
+pacman -Syy
+pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
+pacman-key --lsign-key 3056513887B78AEB
+pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'
+pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
+sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+sed -i s/'ParallelDownloads = 4'/'ParallelDownloads = 4'/g /etc/pacman.conf
+sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf
+sed -i s/'#Color'/'ILoveCandy'/g /etc/pacman.conf
+sed -i s/'CheckSpace'/'#CheckSpace'/g /etc/pacman.conf
+sed -i s/'#IgnorePkg   ='/'IgnorePkg   = discover'/g /etc/pacman.conf
+sed -i 's/^#\[custom]/\[chaotic-aur\]/' /etc/pacman.conf
+sed -i "s/^#SigLevel = Optional TrustAll/Include = \/etc\/pacman.d\/chaotic-mirrorlist/" /etc/pacman.conf
+#----------------------------------------------------------------------------------------#
+pacman-mirrors --fasttrack
+pacman -Syy archlinux-keyring manjaro-keyring chaotic-keyring --noconfirm
+pacman -S arch-install-scripts --noconfirm
+source config/base_system
+fstabgen -U /mnt >> /mnt/etc/fstab
+arch-chroot /mnt /bin/bash -c "ln -sf /usr/share/zoneinfo/$region /etc/localtime"
+arch-chroot /mnt /bin/bash -c "hwclock --systohc"
+arch-chroot /mnt /bin/bash -c "sed -i s/'#en_US.UTF-8'/'en_US.UTF-8'/g /etc/locale.gen"
+arch-chroot /mnt /bin/bash -c "sed -i s/'#ru_RU.UTF-8'/'ru_RU.UTF-8'/g /etc/locale.gen"
+arch-chroot /mnt /bin/bash -c "locale-gen"
+arch-chroot /mnt /bin/bash -c "echo 'LANG=ru_RU.UTF-8' > /etc/locale.conf"
+arch-chroot /mnt /bin/bash -c "echo 'KEYMAP=ru' > /etc/vconsole.conf"
+arch-chroot /mnt /bin/bash -c "echo 'FONT=cyr-sun16' >> /etc/vconsole.conf"
+arch-chroot /mnt /bin/bash -c "echo 'ShefOS' > /etc/hostname"
+arch-chroot /mnt /bin/bash -c "echo '127.0.0.1 localhost' > /etc/hosts"
+arch-chroot /mnt /bin/bash -c "echo '::1       localhost' >> /etc/hosts"
+arch-chroot /mnt /bin/bash -c "echo '127.0.0.1 Manjaro.localdomain Manjaro' >> /etc/hosts"
+#----------------------------PACMAN--------------------------------------------------------------
+arch-chroot /mnt /bin/bash -c "sed -i s/'ParallelDownloads = 4'/'ParallelDownloads = 5'/g /etc/pacman.conf"
+arch-chroot /mnt /bin/bash -c "sed -i s/'#VerbosePkgLists'/'VerbosePkgLists'/g /etc/pacman.conf"
+arch-chroot /mnt /bin/bash -c "sed -i s/'#Color'/'ILoveCandy'/g /etc/pacman.conf"
+arch-chroot /mnt /bin/bash -c "sed -i s/'CheckSpace'/'#CheckSpace'/g /etc/pacman.conf"
+sed -i "/\[multilib\]/,/Include/"'s/^#//' /mnt/etc/pacman.conf
+arch-chroot /mnt /bin/bash -c "pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com"
+arch-chroot /mnt /bin/bash -c "pacman-key --lsign-key 3056513887B78AEB"
+arch-chroot /mnt /bin/bash -c "pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst'"
+arch-chroot /mnt /bin/bash -c "pacman -U --noconfirm 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'"
+sed -i 's/^#\[custom]/\[chaotic-aur\]/' /mnt/etc/pacman.conf
+sed -i "s/^#SigLevel = Optional TrustAll/Include = \/etc\/pacman.d\/chaotic-mirrorlist/" /mnt/etc/pacman.conf
+#-------------------------------------------------------------------------------------------------
+arch-chroot /mnt /bin/bash -c "sed -i s/'# %wheel ALL=(ALL:ALL) ALL'/'%wheel ALL=(ALL:ALL) ALL'/g /etc/sudoers"
+#----------------------------SUDOERS------------------------------------------------------------------
+echo "root:$userpassword" | arch-chroot /mnt chpasswd
+arch-chroot /mnt /bin/bash -c "useradd -m -G wheel -s /bin/bash $username"
+echo "$username:$userpassword" | arch-chroot /mnt chpasswd
+arch-chroot /mnt /bin/bash -c "systemctl enable NetworkManager"
+arch-chroot /mnt /bin/bash -c "${Uefi}"
+arch-chroot /mnt /bin/bash -c "${BIOS}"
+arch-chroot /mnt /bin/bash -c "${BBOOT}"
+arch-chroot /mnt /bin/bash -c "${IGRUB}"
+arch-chroot /mnt /bin/bash -c "grub-mkconfig -o /boot/grub/grub.cfg"
+#----------------------------GRUB----------------------------------------------------------------------
+source config/GRUB/grub
+arch-chroot /mnt /bin/bash -c "sed -i s/'GRUB_DEFAULT=saved'/'GRUB_DEFAULT=0'/g /etc/default/grub"
+arch-chroot /mnt /bin/bash -c "sed -i s/'GRUB_TIMEOUT=5'/'GRUB_TIMEOUT=0'/g /etc/default/grub"
+arch-chroot /mnt /bin/bash -c "sed -i s/'GRUB_SAVEDEFAULT=true'/'GRUB_SAVEDEFAULT=false'/g /etc/default/grub"
+arch-chroot /mnt /bin/bash -c "sed -i s/'MODULES=()'/'MODULES=(crc32c libcrc32c zlib_deflate btrfs)'/g /etc/mkinitcpio.conf"
+arch-chroot /mnt /bin/bash -c "sed -i s/'HOOKS=(base udev autodetect modconf kms keyboard keymap consolefont block filesystems fsck)'/'HOOKS=(base udev autodetect modconf kms keyboard keymap block filesystems fsck)'/g /etc/mkinitcpio.conf"
+#-----------------------------MAKEPKG---------------------------------------------------
+rm /mnt/etc/makepkg.conf
+cp makepkg/makepkg.conf /mnt/etc/
+#-----------------------------------------------
+pacman -Sc --noconfirm
+pacman -Syy
+rm -Rf /mnt/etc/pacman.d/mirrorlist
+cp /etc/pacman.d/mirrorlist /mnt/etc/pacman.d/mirrorlist
+arch-chroot /mnt /bin/bash -c "pacman -Syyuu archlinux-keyring manjaro-keyring chaotic-keyring --noconfirm"
+#-----------------------------------------------------
+arch-chroot /mnt /bin/bash -c "${nvidia_driver}"
+arch-chroot /mnt /bin/bash -c "${hwddriver}"
+${graphc_drivers}
+#------------------------------
+pacman -Sc --noconfirm
+
+source config/desktop_kde
+su manjaro -c "mkdir -p /mnt/home/$username/.local/share"
+arch-chroot /mnt /bin/bash -c "chown -R $username:$username /home/$username/.local"
+
+$a ; $b ; $c ; $d ; $e ; $f ; $g ; $q ; $r ; $s ; $t ; $l ; $o ; $m ; $n
+
+source config/logo/logo24
+sleep 8
+#------------------------MAKEPKG>CONF------------------------------
+rm /etc/makepkg.conf
+cp makepkg/makepkg.conf /etc/
+# <────────────────────────────────────────────────────────────────────>
+#
+#        ADVANCED PKG
+#
+
+# Videobloger tools / VScode / Xanmod / balenaetcher
+
+#source advanced/videoblog_tools
+
+#source advanced/vscode
+
+#source advanced/xanmod
+
+#source advanced/balenaetcher
+
+# <────────────────────────────────────────────────────────────────────>
+cd /mnt/home/$username/tools/
+git clone https://github.com/VHSgunzo/grub-snap.git
+arch-chroot /mnt /bin/bash -c "cd home/$username/tools/grub-snap ; SKIP_AUTOSNAP=1 make install"
+arch-chroot /mnt /bin/bash -c "cd home/$username/tools/apps/ ; wget https://github.com/subhra74/xdm/releases/download/8.0.26/xdman_gtk-8.0.26-1-x86_64.pkg.tar.zst"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gwe/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/pypyweb/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -U home/$username/tools/apps/gc/*.tar.zst --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 pacman -S $CTRL --noconfirm >/dev/null 2>&1; RETVAL=$?"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 fc-cache --force >/dev/null 2>&1; RETVAL=$?"
+rm -Rf /mnt/home/$username/tools >/dev/null 2>&1; RETVAL=$?
+# <─────────────────────     OpenGL      ──────────────────────────────>
+echo "__GL_THREADED_OPTIMIZATIONS=1" >> /mnt/etc/environment
+echo "MESA_GL_VERSION_OVERRIDE=4.5" >> /mnt/etc/environment
+echo "MESA_GLSL_VERSION_OVERRIDE=450" >> /mnt/etc/environment
+# <─────────────────────  SWAPPINES ──────────────────────────────>
+
+arch-chroot /mnt /bin/bash -c "sysctl -w vm.swappiness=10"
+
+arch-chroot /mnt /bin/bash -c "touch /etc/sysctl.d/99-swappiness.conf"
+
+echo "vm.swappiness = 10" > /mnt/etc/sysctl.d/99-swappiness.conf
+
+# <─────────────────────  Neofetch──────────────────────────────>
+
+cd /home/manjaro/shefos
+su manjaro -c "mkdir -p /mnt/home/$username/.config/neofetch"
+su manjaro -c "mkdir -p /mnt/home/$username/.config/flameshot"
+mv config/kde/config/flameshot.ini /mnt/home/$username/.config/flameshot
+mv config/neofetch/config.conf /mnt/home/$username/.config/neofetch/
+arch-chroot /mnt /bin/bash -c "chown -R $username:$username /home/$username/.config"
+
+# <─────────────────────  Neofetch──────────────────────────────>
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 mkinitcpio -P"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 grub-mkconfig -o /boot/grub/grub.cfg"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable bluetooth"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable cups"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable cronie"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable libvirtd"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable systemd-timesyncd"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable systemd-resolved"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable fstrim.timer"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 fstrim -v /"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable ananicy-cpp"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable zramswap"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable irqbalance"
+SKIP_AUTOSNAP=1 echo "ZRAM_COMPRESSION_ALGO=zstd" | tee -a /mnt/etc/zramswap.conf
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable firewalld"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable cpupower"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable haveged"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 ${optimus}"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable --now dbus-broker.service"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 timeshift --check"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable NetworkManager"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 systemctl enable sddm --force"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --permanent --zone=public --add-service=kdeconnect"
+arch-chroot /mnt /bin/bash -c "SKIP_AUTOSNAP=1 firewall-cmd --reload"
+#----------------------------------------------------------------------|
+#                                                      #
+#                     Umount and Exit                  #
+#                                                      #
+#----------------------------------------------------------------------|
+source /home/manjaro/shefos/config/logo/logo26
+sleep 5
+arch-chroot /mnt /bin/bash -c "exit"
+umount -R /mnt
+clear
+reboot
