@@ -552,15 +552,13 @@ rm /etc/makepkg.conf
 cp makepkg/makepkg.conf /etc/
 # <────────────────────────────────────────────────────────────────────>
 
-source config/aur_dependencies
+#source config/aur_dependencies
 
-source config/path/aur_patch
+#source config/path/aur_patch
 
-pacman -Sc --noconfirm
+#pacman -Syy
 
-pacman -Syy
-
-source /home/manjaro/shefos/config/aur
+#source /home/manjaro/shefos/config/aur
 
 # <────────────────────────────────────────────────────────────────────>
 #
@@ -604,6 +602,7 @@ echo "vm.swappiness = 10" > /mnt/etc/sysctl.d/99-swappiness.conf
 # <─────────────────────  Neofetch──────────────────────────────>
 
 cd /home/manjaro/shefos
+su shefos -c "mkdir -p /mnt/home/$username/.config/neofetch"
 su manjaro -c "mkdir -p /mnt/home/$username/.config/neofetch"
 su manjaro -c "mkdir -p /mnt/home/$username/.config/flameshot"
 mv config/kde/config/flameshot.ini /mnt/home/$username/.config/flameshot
