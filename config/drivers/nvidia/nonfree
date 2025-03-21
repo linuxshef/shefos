@@ -1,20 +1,5 @@
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-graphc_drivers='basestrap -i /mnt vulkan-icd-loader lib32-vulkan-icd-loader network-manager-applet --noconfirm'
-nvidia_driver="mhwd -a pci nonfree 0300"
+preparing='sudo pacman -R libxnvctrl conky nvidia-settings --noconfirm'
+
+graphc_drivers='sudo pacman -Sy vulkan-icd-loader lib32-vulkan-icd-loader network-manager-applet --noconfirm'
+
+nvidia_driver="sudo mhwd -a pci nonfree 0300"
